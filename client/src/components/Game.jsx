@@ -3,8 +3,6 @@ import uniqid from 'uniqid';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react'
 
-// TODO: Create puzzleGenBool()
-
 export default function Game () {
     // bring in our game context
     const [state, dispatch] = useGameContext();
@@ -26,7 +24,7 @@ export default function Game () {
             
             //TODO: add logic for adding to the dice roll as the timer ticks down
 
-            if(diceRoll > 80) {
+            if(diceRoll > 90) {
                 return true;
             }
         }
@@ -65,8 +63,11 @@ export default function Game () {
         // while the game goes on, the points total increases every second 
         const timerInterval = setInterval( () => {
             if (timeRemaining > 0) {
+
                 setTimeRemaining(timeRemaining - 1);
+
                 dispatch({ type: INCREASE_SCORE, payload: pointIncrement });
+
                 if (puzzleGenBool(timeRemaining)) {
                     generatePuzzle();
                 }
@@ -81,18 +82,18 @@ export default function Game () {
     if (gameActive) {
         return (
             <>
-            <h1>Time Remaining: {dayjs(timeRemaining).format('m:ss')}</h1>
-            <h2>Points: {state.points}</h2>
-            <ul>
-                {state.puzzles.map( (puzzle) => {
-                    return <PuzzleCard 
-                                key={puzzle.id} 
-                                triageLevel={puzzle.triageLevel}
-                                puzzleType={puzzle.puzzleType} 
-                                seed={puzzle.seed}
-                                />
-                })}
-            </ul>
+                <h1>Time Remaining: {dayjs(timeRemaining).format('m:ss')}</h1>
+                <h2>Points: {state.points}</h2>
+                <ul>
+                    {state.puzzles.map( (puzzle) => {
+                        return <PuzzleCard 
+                                    key={puzzle.id} 
+                                    triageLevel={puzzle.triageLevel}
+                                    puzzleType={puzzle.puzzleType} 
+                                    seed={puzzle.seed}
+                                    />
+                    })}
+                </ul>
             </>
             )
     }
