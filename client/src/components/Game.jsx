@@ -3,7 +3,7 @@ import uniqid from 'uniqid';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react'
 
-// TODO: Create generatePuzzle(), create puzzleGen(), puzzleList array
+// TODO: Create puzzleGenBool()
 
 export default function Game () {
     // bring in our game context
@@ -18,6 +18,22 @@ export default function Game () {
     const triage = [10, 25, 50];
     const puzzleList = ['letterCypher'];
 
+    // checking to see if a new puzzle should be added
+    const puzzleGenBool = (time) => {
+        // setting max number of puzzles that can exist at once
+        if (state.puzzles.length < 10) {
+            const diceRoll = Math.floor(Math.random() * 100);
+            
+            //TODO: add logic for adding to the dice roll as the timer ticks down
+
+            if(diceRoll > 80) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // creates a new, randomly generated puzzle and adds it to the list of active puzzles for React to draw.
     const generatePuzzle = () => {
 
@@ -27,13 +43,13 @@ export default function Game () {
         newPuzzle.id = uniqid();
 
         // 3 triage levels
-        newPuzzle.triageLevel = Math.floor(Math.random() * 2 + 1);
+        newPuzzle.triageLevel = Math.floor(Math.random() * 3 + 1);
 
         // number after * will be determined by the number of puzzles we have. Currently 1
         newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 1)];
 
         // create seed for puzzle so it will be the same every time the page renders
-        newPuzzle.seed = Math.floor(Math.random() * 26);
+        newPuzzle.seed = Math.floor(Math.random() * 1000);
 
         dispatch({type: ADD_PUZZLE, payload: newPuzzle})
         setPointIncrement(pointIncrement + triage[newPuzzle.triageLevel])
@@ -49,9 +65,9 @@ export default function Game () {
         // while the game goes on, the points total increases every second 
         const timerInterval = setInterval( () => {
             if (timeRemaining > 0) {
-                setTimeRemaining(timeRemaining--);
+                setTimeRemaining(timeRemaining - 1);
                 dispatch({ type: INCREASE_SCORE, payload: pointIncrement });
-                if (puzzleGen(timeRemaining)) {
+                if (puzzleGenBool(timeRemaining)) {
                     generatePuzzle();
                 }
             }
