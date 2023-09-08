@@ -1,5 +1,7 @@
 import { useGameContext } from '../utils/GameContext';
 import uniqid from 'uniqid';
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react'
 
 // TODO: Create generatePuzzle(), create puzzleGen(), puzzleList array
 
@@ -12,9 +14,14 @@ export default function Game () {
     const [pointIncrement, setPointIncrement] = useState(0);
     const [gameActive, setGameActive] = useState(true);
 
+    // point increments for triage levels
+    const triage = [10, 25, 50];
+    const puzzleList = ['letterCypher'];
+
+    // creates a new, randomly generated puzzle and adds it to the list of active puzzles for React to draw.
     const generatePuzzle = () => {
 
-        const newPuzzle = {}
+        const newPuzzle = {};
 
         // add unique Id so we can find it later to remove
         newPuzzle.id = uniqid();
@@ -25,9 +32,11 @@ export default function Game () {
         // number after * will be determined by the number of puzzles we have. Currently 1
         newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 1)];
 
+        // create seed for puzzle so it will be the same every time the page renders
+        newPuzzle.seed = Math.floor(Math.random() * 26);
 
         dispatch({type: ADD_PUZZLE, payload: newPuzzle})
-        pointIncrement()
+        setPointIncrement(pointIncrement + triage[newPuzzle.triageLevel])
     }
 
     useEffect( () => {
@@ -42,7 +51,7 @@ export default function Game () {
             if (timeRemaining > 0) {
                 setTimeRemaining(timeRemaining--);
                 dispatch({ type: INCREASE_SCORE, payload: pointIncrement });
-                if (puzzleGen()) {
+                if (puzzleGen(timeRemaining)) {
                     generatePuzzle();
                 }
             }
@@ -55,7 +64,20 @@ export default function Game () {
 
     if (gameActive) {
         return (
-
+            <>
+            <h1>Time Remaining: {dayjs(timeRemaining).format('m:ss')}</h1>
+            <h2>Points: {state.points}</h2>
+            <ul>
+                {state.puzzles.map( (puzzle) => {
+                    return <PuzzleCard 
+                                key={puzzle.id} 
+                                triageLevel={puzzle.triageLevel}
+                                puzzleType={puzzle.puzzleType} 
+                                seed={puzzle.seed}
+                                />
+                })}
+            </ul>
+            </>
             )
     }
 
