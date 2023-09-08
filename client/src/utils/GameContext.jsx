@@ -10,8 +10,8 @@ export const useGameContext = () => useContext(GameContext);
 export const GameProvider = ({ children }) => {
     
     const puzzles = [];
-    
-    const gameState = useReducer(reducer,{puzzles})
+    const points = 0;
+    const gameState = useReducer(reducer,{ puzzles, points })
 
     return (
     <GameContext.Provider value={gameState}>
