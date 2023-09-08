@@ -1,7 +1,7 @@
 # keepTalking
 Keep talking game repo
 
-## Front End
+<!-- ## Front End
 Main: 
     Contains Router
 
@@ -47,4 +47,4 @@ Puzzle component:
 Models
 JWT authorization
 Apollo Server
-GraphQl typedefs/resolvers
+GraphQl typedefs/resolvers -->
