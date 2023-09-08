@@ -10,7 +10,7 @@ module.exports = {
       code: 'UNAUTHENTICATED',
     }
   }),
-
+  
   //Authentication middleware that will check if the user is logged in
   authMiddleware: function ({ req }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
