@@ -1,6 +1,7 @@
 import { useGameContext } from '../utils/GameContext';
+import uniqid from 'uniqid';
 
-// TODO: Create generatePuzzle(), create puzzleGen()
+// TODO: Create generatePuzzle(), create puzzleGen(), puzzleList array
 
 export default function Game () {
     // bring in our game context
@@ -10,6 +11,24 @@ export default function Game () {
     const [timeRemaining, setTimeRemaining] = useState(300);
     const [pointIncrement, setPointIncrement] = useState(0);
     const [gameActive, setGameActive] = useState(true);
+
+    const generatePuzzle = () => {
+
+        const newPuzzle = {}
+
+        // add unique Id so we can find it later to remove
+        newPuzzle.id = uniqid();
+
+        // 3 triage levels
+        newPuzzle.triageLevel = Math.floor(Math.random() * 2 + 1);
+
+        // number after * will be determined by the number of puzzles we have. Currently 1
+        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 1)];
+
+
+        dispatch({type: ADD_PUZZLE, payload: newPuzzle})
+        pointIncrement()
+    }
 
     useEffect( () => {
         
