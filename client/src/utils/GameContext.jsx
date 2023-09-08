@@ -9,9 +9,13 @@ export const useGameContext = () => useContext(GameContext);
 
 export const GameProvider = ({ children }) => {
     
-
-    const gameState = useReducer(reducer, )
-    return (
+    const puzzles = [];
     
+    const gameState = useReducer(reducer,{puzzles})
+
+    return (
+    <GameContext.Provider value={gameState}>
+        {children}
+    </GameContext.Provider>
     )
 }
