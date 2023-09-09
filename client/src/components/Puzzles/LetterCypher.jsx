@@ -11,7 +11,7 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
 
     const [playerGuess, setPlayerGuess] = useState('');
 
-    // TODO: Randomize one of the alphabets
+    // TODO: Randomize the english alphabet
 
     const greek = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς';
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -33,12 +33,17 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
     const answerCheck = (event) => {
         event.preventDefault();
 
+        if (!(playerGuess.length === answer.length)) {
+            return;
+        }
+
         try {
             const guessUpper = playerGuess.toUpperCase();
             for (var i = 0; i < guessUpper.length; i++) {
                 // if there ever isn't a match, stop checking. 
                 // if loop finishes without ever hitting a bad match,
                 // remove puzzle from page
+                // finds the index of their input in the regular alphabet, and if that matches the answer key, do nothing
                 if (!(alphabet.indexOf(guessUpper[i]) === answer[i])) {
                     return;
                 }
