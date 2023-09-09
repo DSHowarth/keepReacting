@@ -9,11 +9,9 @@ export default function Game () {
 
     // state variables for time and point increment, and boolean for switching between game and save score screen
     const [timeRemaining, setTimeRemaining] = useState(300);
-    const [pointIncrement, setPointIncrement] = useState(0);
     const [gameActive, setGameActive] = useState(true);
 
-    // point increments for triage levels
-    const triage = [10, 25, 50];
+    // string of puzzle names, elements to be passed along to child components for conversion into actual components
     const puzzleList = ['letterCypher'];
 
     // checking to see if a new puzzle should be added
@@ -41,7 +39,7 @@ export default function Game () {
         newPuzzle.id = uniqid();
 
         // 3 triage levels
-        newPuzzle.triageLevel = Math.floor(Math.random() * 3 + 1);
+        newPuzzle.triageLevel = Math.floor(Math.random() * 3);
 
         // number after * will be determined by the number of puzzles we have. Currently 1
         newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 1)];
@@ -50,7 +48,6 @@ export default function Game () {
         newPuzzle.seed = Math.floor(Math.random() * 1000);
 
         dispatch({type: ADD_PUZZLE, payload: newPuzzle})
-        setPointIncrement(pointIncrement + triage[newPuzzle.triageLevel])
     }
 
     useEffect( () => {
@@ -66,7 +63,7 @@ export default function Game () {
 
                 setTimeRemaining(timeRemaining - 1);
 
-                dispatch({ type: INCREASE_SCORE, payload: pointIncrement });
+                dispatch({ type: INCREASE_SCORE, payload: state.pointIncrement });
 
                 if (puzzleGenBool(timeRemaining)) {
                     generatePuzzle();

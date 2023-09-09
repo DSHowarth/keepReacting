@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 export default function PuzzleCard ({ key, triageLevel, puzzleType, seed }) {
 
     const puzzleObj = {
-        'letterCypher': <LetterCypher seed={seed}/>
+        'letterCypher': <LetterCypher seed={seed} triageLevel={triageLevel} puzzleId={key}/>
     }
 
     return(
