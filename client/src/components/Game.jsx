@@ -62,7 +62,6 @@ export default function Game () {
 
         const timerInterval = setInterval( () => {
             if (gameActive) {
-                console.log(state.timeRemaining);
                 dispatch({type: REDUCE_TIMER})
                 dispatch({ type: INCREASE_SCORE});
                 if (puzzleGenBool(state.timeRemaining)) {

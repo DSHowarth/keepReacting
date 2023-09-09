@@ -14,9 +14,9 @@ const AppNavbar = () => {
       {/* Navbar layout */}
       <Navbar>
         <Container fluid>
-          {/* <Nav.Brand as={Link} to='/'>
+          <Navbar.Brand as={Link} to='/'>
             Temporary Title: Keep Talking
-          </Nav.Brand> */}
+          </Navbar.Brand>
           <Nav>
             <Nav.Link as={Link} to='/score'>Scores</Nav.Link>
             {Auth.loggedIn() ? (
