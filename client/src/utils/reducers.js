@@ -21,7 +21,7 @@ import {
             return {
                 ...state,
                 puzzles: [...state.puzzles].filter(
-                (puzzle) => puzzle.id !== action.payload
+                (puzzle) => puzzle.id !== action.payload.puzzleId
                 ),
                 pointIncrement: state.pointIncrement - triage[action.payload.triageLevel],
             };

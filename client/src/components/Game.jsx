@@ -1,8 +1,9 @@
 import { useGameContext } from '../utils/GameContext';
 import uniqid from 'uniqid';
 import dayjs from 'dayjs';
-import { useEffect, useState } from 'react'
-import { ADD_PUZZLE, INCREASE_SCORE } from '../utils/actions'
+import { useEffect, useState } from 'react';
+import { ADD_PUZZLE, INCREASE_SCORE } from '../utils/actions';
+import PuzzleCard from './PuzzleCard';
 
 export default function Game () {
     // bring in our game context
@@ -29,7 +30,7 @@ export default function Game () {
         }
 
         return false;
-    }
+    };
 
     // creates a new, randomly generated puzzle and adds it to the list of active puzzles for React to draw.
     const generatePuzzle = () => {
@@ -48,8 +49,8 @@ export default function Game () {
         // create seed for puzzle so it will be the same every time the page renders
         newPuzzle.seed = Math.floor(Math.random() * 1000);
 
-        dispatch({type: ADD_PUZZLE, payload: newPuzzle})
-    }
+        dispatch({type: ADD_PUZZLE, payload: newPuzzle});
+    };
 
     useEffect( () => {
         
@@ -59,6 +60,7 @@ export default function Game () {
         }
         // interval updates every second, checking to see if the player has run out of time 
         // while the game goes on, the points total increases every second 
+        
         const timerInterval = setInterval( () => {
             if (timeRemaining > 0) {
 
@@ -75,17 +77,18 @@ export default function Game () {
                 setGameActive(false);
             }
         }, 1000)
-    }, [])
+    }, []);
 
     if (gameActive) {
         return (
             <>
-                <h1>Time Remaining: {dayjs(timeRemaining).format('m:ss')}</h1>
+                <h1>Time Remaining: {timeRemaining}</h1>
                 <h2>Points: {state.points}</h2>
                 <ul>
                     {state.puzzles.map( (puzzle) => {
                         return <PuzzleCard 
-                                    key={puzzle.id} 
+                                    key={puzzle.id}
+                                    id={puzzle.id}
                                     triageLevel={puzzle.triageLevel}
                                     puzzleType={puzzle.puzzleType} 
                                     seed={puzzle.seed}
@@ -98,5 +101,5 @@ export default function Game () {
 
     return (
         <SaveScore points={state.points} />
-    )
-}
+    );
+};

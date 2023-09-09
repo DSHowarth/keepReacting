@@ -1,6 +1,6 @@
-import seedrandom from 'seedrandom';
+import rng from 'random-seed'
 import { useState } from 'react';
-import { useGameContext } from '../utils/GameContext';
+import { useGameContext } from '../../utils/GameContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { REMOVE_PUZZLE } from '../../utils/actions'
@@ -12,6 +12,7 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
     const [playerGuess, setPlayerGuess] = useState('');
 
     // TODO: Randomize the english alphabet
+    const seededRng = rng.create(seed);
 
     const greek = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς';
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -19,11 +20,14 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
     let answer = []
     let clue = ''
 
-    for (let i = 0; i < 2; i++) {
-        const num = Math.floor(seedrandom(seed - i) * 26)
+    for (let i = 0; i < 4; i++) {
+        const num = seededRng.range(26);
         answer.push(num)
         clue+= greek[num]
     }
+
+    console.log(clue + answer.map((index) => alphabet[index]))
+
 
     const updatePlayerGuess = (event) => {
         const { value } = event.target;
@@ -39,6 +43,7 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
 
         try {
             const guessUpper = playerGuess.toUpperCase();
+            console.log('uppercased guess')
             for (var i = 0; i < guessUpper.length; i++) {
                 // if there ever isn't a match, stop checking. 
                 // if loop finishes without ever hitting a bad match,
@@ -48,7 +53,9 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
                     return;
                 }
             }
+            console.log('made it through for loop')
             dispatch({type: REMOVE_PUZZLE, payload: {puzzleId, triageLevel}})
+            console.log('ran dispatch')
 
         } catch {
             console.log('TODO: Add player feedback for incorrect guess format')
