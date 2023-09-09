@@ -15,15 +15,15 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
     const seededRng = rng.create(seed);
 
     const greek = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς';
-    const alphabet = 'ZKFYPEXTRNGQLUAMSIJBCODWVH'
+    const alphabet = 'ZKFYPEXTRNGQLUAMSIJBCODWVH';
 
-    let answer = []
-    let clue = ''
+    let answer = [];
+    let clue = '';
 
     for (let i = 0; i < 4; i++) {
         const num = seededRng.range(26);
-        answer.push(num)
-        clue+= greek[num]
+        answer.push(num);
+        clue+= greek[num];
     }
 
     const updatePlayerGuess = (event) => {
