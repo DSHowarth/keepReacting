@@ -12,7 +12,9 @@ export const GameProvider = ({ children }) => {
     const puzzles = [];
     const points = 0;
     const pointIncrement = 0;
-    const gameState = useReducer(reducer,{ puzzles, points, pointIncrement })
+    // TODO: Update timer to 5 min again after testing
+    const timeRemaining = 15;
+    const gameState = useReducer(reducer,{ puzzles, points, pointIncrement, timeRemaining })
 
     return (
     <GameContext.Provider value={gameState}>

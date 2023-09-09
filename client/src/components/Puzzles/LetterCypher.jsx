@@ -26,8 +26,6 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
         clue+= greek[num]
     }
 
-    console.log(clue + answer.map((index) => alphabet[index]))
-
 
     const updatePlayerGuess = (event) => {
         const { value } = event.target;
@@ -43,7 +41,6 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
 
         try {
             const guessUpper = playerGuess.toUpperCase();
-            console.log('uppercased guess')
             for (var i = 0; i < guessUpper.length; i++) {
                 // if there ever isn't a match, stop checking. 
                 // if loop finishes without ever hitting a bad match,
@@ -53,10 +50,8 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
                     return;
                 }
             }
-            console.log('made it through for loop')
             dispatch({type: REMOVE_PUZZLE, payload: {puzzleId, triageLevel}})
-            console.log('ran dispatch')
-
+            
         } catch {
             console.log('TODO: Add player feedback for incorrect guess format')
         }

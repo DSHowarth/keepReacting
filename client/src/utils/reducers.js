@@ -1,7 +1,8 @@
 import {
     ADD_PUZZLE,
     REMOVE_PUZZLE,
-    INCREASE_SCORE
+    INCREASE_SCORE,
+    REDUCE_TIMER
   } from './actions';
 
   export default function reducer(state, action) {
@@ -29,11 +30,18 @@ import {
         
         case INCREASE_SCORE: {
 
-            const newScore = state.points + action.payload
+            const newScore = state.points + state.pointIncrement;
 
             return {
                 ...state,
                 points: newScore 
+            }
+        }
+
+        case REDUCE_TIMER: {
+            return {
+                ...state,
+                timeRemaining: state.timeRemaining -= 1
             }
         }
     }

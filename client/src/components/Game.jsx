@@ -2,15 +2,16 @@ import { useGameContext } from '../utils/GameContext';
 import uniqid from 'uniqid';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import { ADD_PUZZLE, INCREASE_SCORE } from '../utils/actions';
+import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from './PuzzleCard';
+import GameTimer from './GameTimer'
 
 export default function Game () {
     // bring in our game context
     const [state, dispatch] = useGameContext();
-
+    console.log(state);
     // state variables for time and point increment, and boolean for switching between game and save score screen
-    const [timeRemaining, setTimeRemaining] = useState(300);
+    // const [timeRemaining, setTimeRemaining] = useState(300);
     const [gameActive, setGameActive] = useState(true);
 
     // string of puzzle names, elements to be passed along to child components for conversion into actual components
@@ -52,6 +53,10 @@ export default function Game () {
         dispatch({type: ADD_PUZZLE, payload: newPuzzle});
     };
 
+    console.log(gameActive)
+    console.log(state.timeRemaining)
+    console.log(state.points)
+
     useEffect( () => {
         
         // generate 5 puzzles on game start
@@ -60,15 +65,12 @@ export default function Game () {
         }
         // interval updates every second, checking to see if the player has run out of time 
         // while the game goes on, the points total increases every second 
-        
+
         const timerInterval = setInterval( () => {
-            if (timeRemaining > 0) {
-
-                setTimeRemaining(timeRemaining - 1);
-
+            if (state.timeRemaining > 0) {
+                dispatch({type: REDUCE_TIMER})
                 dispatch({ type: INCREASE_SCORE, payload: state.pointIncrement });
-
-                if (puzzleGenBool(timeRemaining)) {
+                if (puzzleGenBool(state.timeRemaining)) {
                     generatePuzzle();
                 }
             }
@@ -82,8 +84,7 @@ export default function Game () {
     if (gameActive) {
         return (
             <>
-                <h1>Time Remaining: {timeRemaining}</h1>
-                <h2>Points: {state.points}</h2>
+                <GameTimer timeRemaining={state.timeRemaining} points={state.points}/>
                 <ul>
                     {state.puzzles.map( (puzzle) => {
                         return <PuzzleCard 
