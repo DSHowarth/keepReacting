@@ -3,12 +3,15 @@ import { useState } from 'react';
 import { useGameContext } from '../utils/GameContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { REMOVE_PUZZLE } from '../../utils/actions'
 
 export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
 
     const [state, dispatch] = useGameContext();
 
     const [playerGuess, setPlayerGuess] = useState('');
+
+    // TODO: Randomize one of the alphabets
 
     const greek = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς';
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -31,12 +34,12 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
         event.preventDefault();
 
         try {
-            const answerUpper = playerGuess.toUpperCase();
-            for (var i = 0; i < answerUpper.length; i++) {
+            const guessUpper = playerGuess.toUpperCase();
+            for (var i = 0; i < guessUpper.length; i++) {
                 // if there ever isn't a match, stop checking. 
                 // if loop finishes without ever hitting a bad match,
                 // remove puzzle from page
-                if (!(alphabet.indexOf(answerUpper[i]) === answer[i])) {
+                if (!(alphabet.indexOf(guessUpper[i]) === answer[i])) {
                     return;
                 }
             }

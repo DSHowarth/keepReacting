@@ -2,6 +2,7 @@ import { useGameContext } from '../utils/GameContext';
 import uniqid from 'uniqid';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react'
+import { ADD_PUZZLE, INCREASE_SCORE } from '../utils/actions'
 
 export default function Game () {
     // bring in our game context
