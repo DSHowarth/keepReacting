@@ -15,7 +15,7 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
     const seededRng = rng.create(seed);
 
     const greek = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς';
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const alphabet = 'ZKFYPEXTRNGQLUAMSIJBCODWVH'
 
     let answer = []
     let clue = ''
@@ -25,7 +25,6 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
         answer.push(num)
         clue+= greek[num]
     }
-
 
     const updatePlayerGuess = (event) => {
         const { value } = event.target;
