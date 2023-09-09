@@ -24,7 +24,7 @@ export default function Game () {
             
             //TODO: add logic for adding to the dice roll as the timer ticks down
 
-            if(diceRoll > 90) {
+            if(diceRoll > 95) {
                 return true;
             }
         }
