@@ -2,7 +2,7 @@ const { Score, User } = require("../models");
 
 const resolvers = {
   Query: {
-    Score: async () => {
+    score: async () => {
       return await Score.find();
     },
   },
@@ -21,7 +21,6 @@ const resolvers = {
         return score;
       }
       throw AuthenticationError;
-      ("You need to be logged in!");
     },
 
     login: async (parent, { email, password }) => {

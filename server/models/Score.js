@@ -3,11 +3,11 @@ const bcrypt = require("bcrypt");
 
 const scoreSchema = new Schema({
   score: {
-    type: Int,
+    type: Number,
     required: true,
   },
   date: {
-    type: Int,
+    type: Number,
     required: true,
   },
   teammates: {

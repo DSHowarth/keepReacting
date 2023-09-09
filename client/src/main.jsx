@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import App from './App.jsx'
+import Home from './components/Home'
+import Game from './components/Game'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -16,18 +18,18 @@ const router = createBrowserRouter([
         element: <Home />
       }, {
         path: '/game',
-        element: <Game />
-      }, {
-        path: '/manual',
-        element: <Manual />
-      }, {
-        path: '/score',
-        element: <Score />
-      }
+        element: <Game />}
+      // }, {
+      //   path: '/manual',
+      //   element: <Manual />
+      // }, {
+      //   path: '/score',
+      //   element: <Score />
+      // }
     ]
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ReactProvider router={router} />,
+  <RouterProvider router={router} />,
 )
