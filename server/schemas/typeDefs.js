@@ -20,7 +20,7 @@ const typeDefs = `
   }
 
   type Query {
-    score: [Score]
+    scores: [Score]
   }
  
   input ScoreInput{
