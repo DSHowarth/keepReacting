@@ -9,7 +9,9 @@ export default function Game () {
     // bring in our game context
     const [state, dispatch] = useGameContext();
 
+    // declare useRef object for our intervalId
     const interval = useRef();
+
     // state variables for time and point increment, and boolean for switching between game and save score screen
     const [gameActive, setGameActive] = useState(true);
 
@@ -65,21 +67,15 @@ export default function Game () {
             if (gameActive) {
                 dispatch({type: REDUCE_TIMER})
                 dispatch({ type: INCREASE_SCORE});
-                if (puzzleGenBool(state.timeRemaining)) {
+                if (puzzleGenBool()) {
                     generatePuzzle();
                 }
             }
-            // else {
-            //     console.log('entered else')
-            //     clearInterval(timerInterval);
-            //     console.log('cleared interval')
-            //     setGameActive(false);
-            //     console.log(gameActive)
-            // }
         }
         , 1000)
     }, []);
 
+    // When the timer hits 0, clear the interval and change screen to 'save score'
     if (state.timeRemaining == 0) {
         setGameActive(false)
         clearInterval(interval.current)

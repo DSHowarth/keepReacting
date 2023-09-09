@@ -21,7 +21,6 @@ const resolvers = {
         return score;
       }
       throw AuthenticationError;
-      ("You need to be logged in!");
     },
 
     login: async (parent, { email, password }) => {
