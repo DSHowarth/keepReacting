@@ -1,7 +1,6 @@
 import { useGameContext } from '../utils/GameContext';
 import uniqid from 'uniqid';
-import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from './PuzzleCard';
 import GameTimer from './GameTimer'
@@ -9,6 +8,8 @@ import GameTimer from './GameTimer'
 export default function Game () {
     // bring in our game context
     const [state, dispatch] = useGameContext();
+
+    const interval = useRef();
     // state variables for time and point increment, and boolean for switching between game and save score screen
     const [gameActive, setGameActive] = useState(true);
 
@@ -60,7 +61,7 @@ export default function Game () {
         // interval updates every second, checking to see if the player has run out of time 
         // while the game goes on, the points total increases every second 
 
-        const timerInterval = setInterval( () => {
+        interval.current = setInterval( () => {
             if (gameActive) {
                 dispatch({type: REDUCE_TIMER})
                 dispatch({ type: INCREASE_SCORE});
@@ -68,18 +69,20 @@ export default function Game () {
                     generatePuzzle();
                 }
             }
-            else {
-                console.log('entered else')
-                clearInterval(timerInterval);
-                console.log('cleared interval')
-                setGameActive(false);
-                console.log(gameActive)
-            }
-        }, 1000)
+            // else {
+            //     console.log('entered else')
+            //     clearInterval(timerInterval);
+            //     console.log('cleared interval')
+            //     setGameActive(false);
+            //     console.log(gameActive)
+            // }
+        }
+        , 1000)
     }, []);
 
     if (state.timeRemaining == 0) {
         setGameActive(false)
+        clearInterval(interval.current)
     }
 
     if (gameActive) {
