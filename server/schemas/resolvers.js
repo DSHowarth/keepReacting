@@ -2,7 +2,7 @@ const { Score, User } = require("../models");
 
 const resolvers = {
   Query: {
-    Score: async () => {
+    score: async () => {
       return await Score.find();
     },
   },

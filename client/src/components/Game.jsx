@@ -9,7 +9,6 @@ import GameTimer from './GameTimer'
 export default function Game () {
     // bring in our game context
     const [state, dispatch] = useGameContext();
-    console.log(state);
     // state variables for time and point increment, and boolean for switching between game and save score screen
     const [gameActive, setGameActive] = useState(true);
 
@@ -52,8 +51,6 @@ export default function Game () {
         dispatch({type: ADD_PUZZLE, payload: newPuzzle});
     };
 
-    console.log(state.timeRemaining)
-
     useEffect( () => {
         
         // generate 5 puzzles on game start
@@ -64,7 +61,7 @@ export default function Game () {
         // while the game goes on, the points total increases every second 
 
         const timerInterval = setInterval( () => {
-            if (state.timeRemaining > 0) {
+            if (gameActive) {
                 console.log(state.timeRemaining);
                 dispatch({type: REDUCE_TIMER})
                 dispatch({ type: INCREASE_SCORE});
@@ -81,6 +78,10 @@ export default function Game () {
             }
         }, 1000)
     }, []);
+
+    if (state.timeRemaining == 0) {
+        setGameActive(false)
+    }
 
     if (gameActive) {
         return (
