@@ -1,7 +1,12 @@
 import seedrandom from 'seedrandom';
 import { useState } from 'react';
+import { useGameContext } from '../utils/GameContext';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
+
+    const [state, dispatch] = useGameContext();
 
     const [playerGuess, setPlayerGuess] = useState('');
 
@@ -17,17 +22,25 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
         clue+= greek[num]
     }
 
-    const answerCheck = () => {
+    const updatePlayerGuess = (event) => {
+        const { value } = event.target;
+        setPlayerGuess(value);
+    }
+
+    const answerCheck = (event) => {
+        event.preventDefault();
+
         try {
             const answerUpper = playerGuess.toUpperCase();
             for (var i = 0; i < answerUpper.length; i++) {
-                // if there ever isn't a match, stop checking. if loop finishes without ever hitting a bad match,
+                // if there ever isn't a match, stop checking. 
+                // if loop finishes without ever hitting a bad match,
                 // remove puzzle from page
                 if (!(alphabet.indexOf(answerUpper[i]) === answer[i])) {
                     return;
                 }
             }
-            dispatch({type: REMOVE_PUZZLE, payload: puzzleId})
+            dispatch({type: REMOVE_PUZZLE, payload: {puzzleId, triageLevel}})
 
         } catch {
             console.log('TODO: Add player feedback for incorrect guess format')
@@ -35,6 +48,16 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
     }
 
     return (
-
+        <>
+            <h1>{clue}</h1>
+            <Form onSubmit={answerCheck}>
+                <Form.Group>
+                    <Form.Control size="lg" type="text" onChange={updatePlayerGuess} value={playerGuess}/>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit  
+                </Button>
+            </Form>
+        </>
     )
 }
