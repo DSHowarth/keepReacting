@@ -2,8 +2,8 @@ import { useGameContext } from '../utils/GameContext';
 import uniqid from 'uniqid';
 import { useEffect, useState, useRef } from 'react';
 import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
-import PuzzleCard from './PuzzleCard';
-import GameTimer from './GameTimer'
+import PuzzleCard from '../components/PuzzleCard';
+import GameTimer from '../components/GameTimer'
 
 export default function Game () {
     // bring in our game context
