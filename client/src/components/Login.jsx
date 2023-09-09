@@ -50,13 +50,13 @@ const Login = () => {
 
   return (
     <>
-      <Form>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert}>
           Login Error
         </Alert>
 
         {/* Email Input */}
-        <Form.Group noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Form.Group>
           <Form.Label htmlFor='email'>Email:</Form.Label>
           <Form.Control
             type='text'

@@ -50,7 +50,7 @@ const Signup = () => {
 
   return (
     <>
-      <Form>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert}>
           Signup Error
         </Alert>
@@ -70,7 +70,7 @@ const Signup = () => {
         </Form.Group>
 
         {/* Email Input */}
-        <Form.Group noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Form.Group >
           <Form.Label htmlFor='email'>Email:</Form.Label>
           <Form.Control
             type='text'
