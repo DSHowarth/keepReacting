@@ -11,7 +11,6 @@ export default function Game () {
     const [state, dispatch] = useGameContext();
     console.log(state);
     // state variables for time and point increment, and boolean for switching between game and save score screen
-    // const [timeRemaining, setTimeRemaining] = useState(300);
     const [gameActive, setGameActive] = useState(true);
 
     // string of puzzle names, elements to be passed along to child components for conversion into actual components
@@ -53,10 +52,6 @@ export default function Game () {
         dispatch({type: ADD_PUZZLE, payload: newPuzzle});
     };
 
-    console.log(gameActive)
-    console.log(state.timeRemaining)
-    console.log(state.points)
-
     useEffect( () => {
         
         // generate 5 puzzles on game start
@@ -68,15 +63,19 @@ export default function Game () {
 
         const timerInterval = setInterval( () => {
             if (state.timeRemaining > 0) {
+                console.log(state.timeRemaining);
                 dispatch({type: REDUCE_TIMER})
-                dispatch({ type: INCREASE_SCORE, payload: state.pointIncrement });
+                dispatch({ type: INCREASE_SCORE});
                 if (puzzleGenBool(state.timeRemaining)) {
                     generatePuzzle();
                 }
             }
             else {
+                console.log('entered else')
                 clearInterval(timerInterval);
+                console.log('cleared interval')
                 setGameActive(false);
+                console.log(gameActive)
             }
         }, 1000)
     }, []);

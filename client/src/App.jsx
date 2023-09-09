@@ -3,11 +3,8 @@ import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 import './App.css';
 
-
-
-// import Navbar from './components/Navbar';
+import AppNavbar from './components/Navbar';
 import { GameProvider } from './utils/GameContext';
-
 const httpLink = createHttpLink({
   uri: 'graphql'
 });
@@ -30,8 +27,8 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <AppNavbar />
       <GameProvider>
-        {/* <Navbar /> */}
         <Outlet />
       </GameProvider>
     </ApolloProvider>
