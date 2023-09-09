@@ -52,6 +52,8 @@ export default function Game () {
         dispatch({type: ADD_PUZZLE, payload: newPuzzle});
     };
 
+    console.log(state.timeRemaining)
+
     useEffect( () => {
         
         // generate 5 puzzles on game start
