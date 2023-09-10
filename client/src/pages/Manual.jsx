@@ -31,8 +31,8 @@ const Manual = () => {
       <div>
         <h2 className="manul-h2">Cypher Table</h2>
         {/* Table with header cell and data cell styles */}
-        <table>
-          <tbody className="manul-table">{rows}</tbody>
+        <table className="manul-table">
+          <tbody>{rows}</tbody>
         </table>
       </div>
     </div>
