@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_SCORE = gql`
-  mutation addScore($score: Int!, $date: Int!, $teammates: String, $user: ID!){
-    addScore(score: $score, date: $date, teammates: $teammates, user: $user){
+  mutation addScore($input: ScoreInput!){
+    addScore(input: $input){
       _id
       score
       date
