@@ -60,7 +60,7 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
             <h1>{clue}</h1>
             <Form onSubmit={answerCheck}>
                 <Form.Group>
-                    <Form.Control size="lg" type="text" onChange={updatePlayerGuess} value={playerGuess}/>
+                    <Form.Control type="text" onChange={updatePlayerGuess} value={playerGuess}/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit  

@@ -7,7 +7,6 @@ import Home from "./pages/Home.jsx";
 import Game from "./pages/Game.jsx";
 import Scores from "./pages/Scores.jsx";
 import Manual from "./pages/Manual.jsx";
-import "./index.css";
 
 const router = createBrowserRouter([
   {

@@ -1,10 +1,17 @@
+body {
+  background-color: #272838;
+  color: white;
+}
+
 #root {
   margin: 0 auto;
   text-align: center;
+
 }
 
 .card {
   padding: 2em;
+  margin: 10px;
 }
 
 
