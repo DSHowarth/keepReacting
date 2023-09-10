@@ -47,7 +47,6 @@ export default function Game () {
         
         // Function can use the argument to assign a triage level, otherwise generate random level
         newPuzzle.triageLevel =  (level === 0) ? level : level ? level : Math.floor(Math.random() * 3)
-        console.log(newPuzzle.triageLevel);
 
         // number after * will be determined by the number of puzzles we have. Currently 1
         newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 1)];
