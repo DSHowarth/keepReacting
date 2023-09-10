@@ -17,7 +17,7 @@ export default function SaveScore ({ points }) {
         setTeammates(value);
     }
 
-    const submitScore = (event) => {
+    const submitScore = async (event) => {
         event.preventDefault();
 
         try {
@@ -25,7 +25,8 @@ export default function SaveScore ({ points }) {
                 score: points,
                 teammates: teammates,
             }
-            const addScoreResults = addScore({ variables: newScore})
+            console.log(newScore);
+            const addScoreResults = await addScore({ variables: newScore})
             console.log(addScoreResults)
         } catch {
             setShowAlert(true);

@@ -24,11 +24,8 @@ const typeDefs = `
   }
  
   input ScoreInput{
-    _id: ID
-    date: Int
     score: Int
     teammates: String
-    user: ID!
   }
 
   type Mutation {
