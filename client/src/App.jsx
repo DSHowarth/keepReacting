@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 import AppNavbar from "./components/Navbar";
-import { GameProvider } from "./utils/GameContext";
+
 const httpLink = createHttpLink({
   uri: "graphql",
 });
@@ -34,9 +34,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <AppNavbar />
-      <GameProvider>
         <Outlet />
-      </GameProvider>
     </ApolloProvider>
   );
 }
