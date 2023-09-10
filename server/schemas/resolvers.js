@@ -15,7 +15,7 @@ const resolvers = {
     addScore: async (parent, { input }, context) => {
       if (context.user) {
         const score = await Score.create({
-          input,
+          ...input,
           userId: context.user._id,
         });
 
