@@ -5,6 +5,8 @@ import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from '../components/PuzzleCard';
 import GameTimer from '../components/GameTimer';
 import SaveScore from '../components/SaveScore';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 export default function Game () {
     // bring in our game context
@@ -85,18 +87,21 @@ export default function Game () {
     if (gameActive) {
         return (
             <>
+
+                <Container fluid>
+                <Row className={'justify-content-center'}>
                 <GameTimer timeRemaining={state.timeRemaining} points={state.points}/>
-                <ul>
-                    {state.puzzles.map( (puzzle) => {
-                        return <PuzzleCard 
-                                    key={puzzle.id}
-                                    id={puzzle.id}
-                                    triageLevel={puzzle.triageLevel}
-                                    puzzleType={puzzle.puzzleType} 
-                                    seed={puzzle.seed}
-                                    />
-                    })}
-                </ul>
+                        {state.puzzles.map( (puzzle) => {
+                            return <PuzzleCard 
+                                        key={puzzle.id}
+                                        id={puzzle.id}
+                                        triageLevel={puzzle.triageLevel}
+                                        puzzleType={puzzle.puzzleType} 
+                                        seed={puzzle.seed}
+                                        />
+                        })}
+                </Row>
+                </Container>
             </>
             )
     }
