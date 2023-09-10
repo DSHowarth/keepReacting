@@ -9,7 +9,7 @@ export default function PuzzleCard ({ id, triageLevel, puzzleType, seed }) {
 
     return(
         // placeholder classnames
-        <Card className={triageLevel == 1 ? 'green' : triageLevel == 2 ? 'yellow' : 'red'}>
+        <Card className={triageLevel == 0 ? 'triage-0' : triageLevel == 1 ? 'triage-1' : 'triage-2'}>
             <Card.Body>
             {puzzleObj[puzzleType]}
             </Card.Body>

@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+.triage-0 {
+  background-color: green;
+  color: black;
+}
+
+.triage-1 {
+  background-color: yellow;
+  color: black;
+}
+
+.triage-2 {
+  background-color: red;
+  color: black;
+}
