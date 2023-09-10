@@ -29,3 +29,30 @@ body {
   background-color: red;
   color: black;
 }
+
+/* Style for the h1 element */
+.manual-h1 {
+  text-align: center;
+  color: purple;
+}
+
+/* Style for the h2 element */
+.manul-h2{
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style for the table */
+.manul-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+
+/* Style for table data cells */
+td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
