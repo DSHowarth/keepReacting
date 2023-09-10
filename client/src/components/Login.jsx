@@ -31,12 +31,13 @@ const Login = () => {
       const { data } = await login({
         variables: { ...userFormData }
       });
-
-      if (!data.ok) {
+      //Check if data was retrieved 
+      if (!data) {
         throw new Error('something went wrong!');
       }
 
       Auth.login(data.login.token);
+      console.log(data)
     } catch (err) {
       console.error(err);
       setShowAlert(true);
