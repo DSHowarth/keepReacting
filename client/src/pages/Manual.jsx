@@ -29,9 +29,9 @@ const Manual = () => {
 
       {/* Cypher Table */}
       <div>
-        <h2 className="manul-h2">Cypher Table</h2>
+        <h2 className="manual-h2">Cypher Table</h2>
         {/* Table with header cell and data cell styles */}
-        <table className="manul-table">
+        <table className="manual-table">
           <tbody>{rows}</tbody>
         </table>
       </div>
