@@ -11,7 +11,6 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
 
     const [playerGuess, setPlayerGuess] = useState('');
 
-    // TODO: Randomize the english alphabet
     const seededRng = rng.create(seed);
 
     const greek = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς';

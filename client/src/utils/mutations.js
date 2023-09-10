@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import { gql } from '@apollo/client'
-
-export const ADD_SCORE = gql`
-    mutation newScore($input: ScoreInput!) {
-        addScore(input: $input) {
-            score
-            date
-            teammates
-            userId
-        }
-    }
-`
-=======
 import { gql } from '@apollo/client';
 
 export const LOGIN_USER = gql`
@@ -52,4 +38,3 @@ export const ADD_SCORE = gql`
     }
   }
 `;
->>>>>>> 4426b5568e26bee58371a33d7ccef33c075ef549
