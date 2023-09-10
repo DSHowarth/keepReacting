@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
-// import {/* Replace with Login */ } from '../utils/mutations'
+import { LOGIN_USER } from '../utils/mutations'
 import Auth from '../utils/auth';
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const [login] = useMutation(/* Replace with Login */);
+  const [login] = useMutation(LOGIN_USER);
 
   //Update value of input
   const handleInputChange = (event) => {
