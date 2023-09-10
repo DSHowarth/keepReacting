@@ -6,7 +6,10 @@ export const QUERY_SCORES = gql`
       _id
       score
       date
-      teammates 
+      teammates
+      user {
+        username
+      }
     }
   }
-`
+`;
