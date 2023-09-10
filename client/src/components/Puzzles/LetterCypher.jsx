@@ -11,21 +11,19 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
 
     const [playerGuess, setPlayerGuess] = useState('');
 
-    // TODO: Randomize the english alphabet
     const seededRng = rng.create(seed);
 
     const greek = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς';
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const alphabet = 'ZKFYPEXTRNGQLUAMSIJBCODWVH';
 
-    let answer = []
-    let clue = ''
+    let answer = [];
+    let clue = '';
 
     for (let i = 0; i < 4; i++) {
         const num = seededRng.range(26);
-        answer.push(num)
-        clue+= greek[num]
+        answer.push(num);
+        clue+= greek[num];
     }
-
 
     const updatePlayerGuess = (event) => {
         const { value } = event.target;
@@ -62,7 +60,7 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
             <h1>{clue}</h1>
             <Form onSubmit={answerCheck}>
                 <Form.Group>
-                    <Form.Control size="lg" type="text" onChange={updatePlayerGuess} value={playerGuess}/>
+                    <Form.Control type="text" onChange={updatePlayerGuess} value={playerGuess}/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit  

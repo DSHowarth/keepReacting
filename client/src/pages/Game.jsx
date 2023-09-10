@@ -3,7 +3,10 @@ import uniqid from 'uniqid';
 import { useEffect, useState, useRef } from 'react';
 import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from '../components/PuzzleCard';
-import GameTimer from '../components/GameTimer'
+import GameTimer from '../components/GameTimer';
+import SaveScore from '../components/SaveScore';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 export default function Game () {
     // bring in our game context
@@ -35,15 +38,17 @@ export default function Game () {
     };
 
     // creates a new, randomly generated puzzle and adds it to the list of active puzzles for React to draw.
-    const generatePuzzle = () => {
-
+    const generatePuzzle = (level) => {
+        console.log(level)
         const newPuzzle = {};
 
         // add unique Id so we can find it later to remove
         newPuzzle.id = uniqid();
 
+        
         // 3 triage levels
-        newPuzzle.triageLevel = Math.floor(Math.random() * 3);
+        newPuzzle.triageLevel =  (level === 0) ? level : level ? level : Math.floor(Math.random() * 3)
+        console.log(newPuzzle.triageLevel);
 
         // number after * will be determined by the number of puzzles we have. Currently 1
         newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 1)];
@@ -57,12 +62,13 @@ export default function Game () {
     useEffect( () => {
         
         // generate 5 puzzles on game start
-        for(let i = 0; i < 5; i++) {
-            generatePuzzle();
-        }
         // interval updates every second, checking to see if the player has run out of time 
         // while the game goes on, the points total increases every second 
-
+        generatePuzzle(2)
+        generatePuzzle(1)
+        generatePuzzle(1)
+        generatePuzzle(0)
+        generatePuzzle(0)
         interval.current = setInterval( () => {
             if (gameActive) {
                 dispatch({type: REDUCE_TIMER})
@@ -76,7 +82,7 @@ export default function Game () {
     }, []);
 
     // When the timer hits 0, clear the interval and change screen to 'save score'
-    if (state.timeRemaining == 0) {
+    if ((state.timeRemaining == 0) && gameActive) {
         setGameActive(false)
         clearInterval(interval.current)
     }
@@ -84,18 +90,21 @@ export default function Game () {
     if (gameActive) {
         return (
             <>
+
+                <Container fluid>
+                <Row className={'justify-content-center'}>
                 <GameTimer timeRemaining={state.timeRemaining} points={state.points}/>
-                <ul>
-                    {state.puzzles.map( (puzzle) => {
-                        return <PuzzleCard 
-                                    key={puzzle.id}
-                                    id={puzzle.id}
-                                    triageLevel={puzzle.triageLevel}
-                                    puzzleType={puzzle.puzzleType} 
-                                    seed={puzzle.seed}
-                                    />
-                    })}
-                </ul>
+                        {state.puzzles.map( (puzzle) => {
+                            return <PuzzleCard 
+                                        key={puzzle.id}
+                                        id={puzzle.id}
+                                        triageLevel={puzzle.triageLevel}
+                                        puzzleType={puzzle.puzzleType} 
+                                        seed={puzzle.seed}
+                                        />
+                        })}
+                </Row>
+                </Container>
             </>
             )
     }
