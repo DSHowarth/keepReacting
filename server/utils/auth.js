@@ -10,11 +10,12 @@ module.exports = {
       code: 'UNAUTHENTICATED',
     }
   }),
-  
+
   //Authentication middleware that will check if the user is logged in
   authMiddleware: function ({ req }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
-
+    //log token
+    console.log("auth:", token)
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim();
     }
@@ -26,6 +27,8 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data
+      //log data
+      console.log(data)
     } catch {
       console.log('Invalid Token');
     }
@@ -36,6 +39,6 @@ module.exports = {
   signToken: function ({ username, email, _id }) {
     const payload = { username, email, _id };
 
-    return jwt.sign({ date: payload }, secret, { expiresIn: expiration });
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   }
 };
