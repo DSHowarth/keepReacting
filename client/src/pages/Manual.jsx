@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Page.css";
+// import "./Page.css";
 
 const Manual = () => {
   const [cypherTable, setCypherTable] = useState("");
@@ -25,20 +25,14 @@ const Manual = () => {
 
   return (
     <div>
-      <h1>Game Manual</h1>
+      <h1 className="manual-h1">Game Manual</h1>
 
       {/* Cypher Table */}
       <div>
-        <h2>Cypher Table</h2>
+        <h2 className="manul-h2">Cypher Table</h2>
         {/* Table with header cell and data cell styles */}
         <table>
-          <thead>
-            <tr>
-              <th>Hint 1</th>
-              <th>Hint 2</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
+          <tbody className="manul-table">{rows}</tbody>
         </table>
       </div>
     </div>
