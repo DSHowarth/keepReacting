@@ -55,8 +55,8 @@ const Manual = () => {
         <table style={tableStyle}>
           <thead>
             <tr>
-              <th style={headerCellStyle}>Greek</th>
-              <th style={headerCellStyle}>Alphabet</th>
+              <th style={headerCellStyle}>Hint 1</th>
+              <th style={headerCellStyle}>Hint 2</th>
             </tr>
           </thead>
           <tbody>{rows}</tbody>
