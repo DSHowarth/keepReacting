@@ -6,7 +6,7 @@ export default function Scores() {
 
   // Sort the scores from lowest to highest
   const sortScores = data ? data.scores.sort((a, b) => a.score - b.score) : [];
-
+  // TODO? Limit how many scores are shown
   return (
     <>
       <h2>Top Scores</h2>

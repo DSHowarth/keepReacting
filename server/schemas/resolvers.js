@@ -1,4 +1,5 @@
 const { Score, User } = require("../models");
+const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -11,10 +12,10 @@ const resolvers = {
       return await User.create({ username, email, password });
     },
 
-    addScore: async (parent, { score }, context) => {
+    addScore: async (parent, { input }, context) => {
       if (context.user) {
         const score = await Score.create({
-          score,
+          input,
           userId: context.user._id,
         });
 
