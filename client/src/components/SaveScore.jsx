@@ -1,12 +1,14 @@
 import ADD_SCORE from '../utils/mutations';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 export default function SaveScore ({ points }) {
 
-    const [teammates, setTeammates] = useState('')  
+    const [teammates, setTeammates] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
 
     const [addScore] = useMutation(ADD_SCORE);
 
@@ -18,11 +20,16 @@ export default function SaveScore ({ points }) {
     const submitScore = (event) => {
         event.preventDefault();
 
-        // try {
-        //     addScore()
-        // } catch {
-
-        // }
+        try {
+            const newScore = {
+                score: points,
+                teammates: teammates,
+            }
+            const addScoreResults = addScore({ variables: newScore})
+            console.log(addScoreResults)
+        } catch {
+            setShowAlert(true);
+        }
     }
 
     return (
@@ -37,6 +44,9 @@ export default function SaveScore ({ points }) {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                { showAlert &&
+                    <Alert variant='danger'>Something went wrong, score was not added.</Alert>
+                }   
             </Form>
         </>
     )
