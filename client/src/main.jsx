@@ -1,36 +1,42 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import App from './App.jsx'
-import Home from './pages/Home.jsx'
-import Game from './pages/Game.jsx'
-import Scores from './pages/Scores.jsx'
-import './index.css'
+import App from "./App.jsx";
+import Home from "./pages/Home.jsx";
+import Game from "./pages/Game.jsx";
+import Scores from "./pages/Scores.jsx";
+import Manual from "./pages/Manual.jsx";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
-    errorElement: <h1>Can be replcaed with actual error page or just return this</h1>,
+    errorElement: (
+      <h1>Can be replcaed with actual error page or just return this</h1>
+    ),
     children: [
       {
         index: true,
-        element: <Home />
-      }, {
-        path: '/game',
-        element: <Game />
-      }, /* {
-        path: '/manual',
-        element: <Manual />
-      }, */ {
-        path: '/score',
-        element: <Scores />
-      }
-    ]
-  }
-])
+        element: <Home />,
+      },
+      {
+        path: "/game",
+        element: <Game />,
+      },
+      {
+        path: "/manual",
+        element: <Manual />,
+      },
+      {
+        path: "/score",
+        element: <Scores />,
+      },
+    ],
+  },
+]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />,
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
