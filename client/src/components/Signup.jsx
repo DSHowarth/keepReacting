@@ -30,7 +30,7 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...userFormData }
       })
-
+      //Check if data was retrieved 
       if (!data) {
         throw new Error('something went wrong!');
       }
