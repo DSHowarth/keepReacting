@@ -11,7 +11,7 @@ const typeDefs = `
     score: Int
     date: Int
     teammates: String
-    userId: ID!
+    user: User
   }
 
   type Auth {
@@ -28,7 +28,7 @@ const typeDefs = `
     date: Int
     score: Int
     teammates: String
-    userId: ID!
+    user: ID!
   }
 
   type Mutation {
