@@ -3,7 +3,8 @@ import uniqid from 'uniqid';
 import { useEffect, useState, useRef } from 'react';
 import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from '../components/PuzzleCard';
-import GameTimer from '../components/GameTimer'
+import GameTimer from '../components/GameTimer';
+import SaveScore from '../components/SaveScore';
 
 export default function Game () {
     // bring in our game context
@@ -76,7 +77,7 @@ export default function Game () {
     }, []);
 
     // When the timer hits 0, clear the interval and change screen to 'save score'
-    if (state.timeRemaining == 0) {
+    if ((state.timeRemaining == 0) && gameActive) {
         setGameActive(false)
         clearInterval(interval.current)
     }

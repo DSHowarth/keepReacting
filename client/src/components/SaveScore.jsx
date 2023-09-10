@@ -1,4 +1,4 @@
-import ADD_SCORE from '../utils/mutations';
+import { ADD_SCORE } from '../utils/mutations';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
