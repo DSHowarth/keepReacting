@@ -5,7 +5,8 @@ const mongoose = require('mongoose')
 const resolvers = {
   Query: {
     scores: async () => {
-      return await Score.find().populate('user');
+      // return a listed sorted in ascending order by score
+      return await Score.find().populate('user').sort('score') ;
     },
   },
   Mutation: {

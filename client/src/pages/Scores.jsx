@@ -2,11 +2,14 @@ import { QUERY_SCORES } from "../utils/queries";
 import { useQuery } from '@apollo/client'
 
 export default function Scores() {
-  const { data } = useQuery(QUERY_SCORES);
-  console.log(data)
-  // Sort the scores from lowest to highest
-  // const sortScores = data ? data.scores.sort((a, b) => a.score - b.score) : [];
+  const { data, loading } = useQuery(QUERY_SCORES);
   // TODO? Limit how many scores are shown
+
+  if (loading) {
+    return (
+      <h2>Loading</h2>
+    )
+  }
   return (
     <>
       <h2>Top Scores</h2>
