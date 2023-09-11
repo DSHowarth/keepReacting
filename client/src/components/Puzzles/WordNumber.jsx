@@ -13,10 +13,33 @@ export default function WordNumber({ puzzleId, triageLevel, seed }) {
 
   const seededRng = rng.create(seed);
 
-  const wordBank = ['apple', 'orange', 'banana', 'grape', 'kiwi', 'mangosteen']
+  const wordBank = ['APPLE', 'ORANGE', 'BANANA', 'GRAPE', 'KIWI', 'MANGOSTEEN'];
+  //letters and there values
+  const letters = {
+    A: 1,
+    B: 2,
+    C: 3,
+    D: 4,
+    E: 5,
+    F: 6,
+    G: 7,
+    H: 8,
+    I: 9,
+    J: 10,
+    K: 11,
+    L: 12,
+    M: 13, N: 14, O: 15, P: 16, Q: 17, R: 18, S: 19, T: 20, U: 21, V: 22, W: 23, X: 24, Y: 25, Z: 26
+  };
+
+  const choosenWord = wordBank[seededRng.range(wordBank.length)]
 
   let answer;
-  let clue;
+  //choose random word from word bank
+  let clue = choosenWord;
+
+  for (let i = 0; i < choosenWord.length; i++) {
+    clue += letters[choosenWord[i]]
+  }
 
   const updatePlayerGuess = (event) => {
     const { value } = event.target;
@@ -38,4 +61,18 @@ export default function WordNumber({ puzzleId, triageLevel, seed }) {
       console.log('TODO: Add player feedback for incorrect guess format')
     }
   }
+
+  return (
+    <>
+      <h1>{clue}</h1>
+      <Form onSubmit={answerCheck}>
+        <Form.Group>
+          <Form.Control type="text" onChange={updatePlayerGuess} value={playerGuess} />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </>
+  )
 }
