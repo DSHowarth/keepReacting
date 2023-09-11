@@ -21,13 +21,12 @@ export default function SaveScore ({ points }) {
         event.preventDefault();
 
         try {
+            // Add score, if there's an issue, enable alert
             const newScore = {
                 score: points,
                 teammates: teammates,
             }
-            console.log(newScore);
             const addScoreResults = await addScore({ variables: {input: newScore}})
-            console.log(addScoreResults)
         } catch (err) {
             console.log(err)
             setShowAlert(true);

@@ -5,9 +5,7 @@ const mongoose = require('mongoose')
 const resolvers = {
   Query: {
     scores: async () => {
-      const scorer = await Score.find().populate('user');
-      console.log(scorer);
-      return scorer
+      return await Score.find().populate('user');
     },
   },
   Mutation: {
@@ -20,13 +18,12 @@ const resolvers = {
     addScore: async (parent, { input }, context) => {
       try {
       if (context.user) {
-        console.log(context.user._id);
         const newScore = await Score.create({
           ...input,
+          // user id must be converted from string back into objectID data type to be able to create association
           user: new mongoose.Types.ObjectId(context.user._id),
         });
         const {score, teammates} = newScore;
-        console.log(newScore)
         return {score, teammates};
       }
     } catch (err) {
