@@ -26,9 +26,10 @@ export default function SaveScore ({ points }) {
                 teammates: teammates,
             }
             console.log(newScore);
-            const addScoreResults = await addScore({ variables: newScore})
+            const addScoreResults = await addScore({ variables: {input: newScore}})
             console.log(addScoreResults)
-        } catch {
+        } catch (err) {
+            console.log(err)
             setShowAlert(true);
         }
     }

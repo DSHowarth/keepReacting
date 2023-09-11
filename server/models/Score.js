@@ -7,14 +7,14 @@ const scoreSchema = new Schema({
     required: true,
   },
   date: {
-    type: Number,
+    type: Date,
     required: true,
     default: Date.now
   },
   teammates: {
     type: String,
   },
-  userId: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },

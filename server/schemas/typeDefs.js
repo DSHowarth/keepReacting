@@ -9,7 +9,7 @@ const typeDefs = `
   type Score {
     _id: ID!
     score: Int
-    date: Int
+    date: String
     teammates: String
     user: User
   }
