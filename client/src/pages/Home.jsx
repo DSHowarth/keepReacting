@@ -6,7 +6,7 @@ export default function Home () {
     return (
         <>
             <h1> Welcome to the Game</h1>
-            <LinkContainer to='/game'><Button variant="primary">Play</Button></LinkContainer>
+            <LinkContainer to='/game'><Button variant="primary">Play</Button></LinkContainer><br/>
             <LinkContainer to='/manual'><Button variant="primary">Manual</Button></LinkContainer>
         </>
     )

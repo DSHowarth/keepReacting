@@ -1,10 +1,12 @@
 const { Score, User } = require("../models");
 const { signToken, AuthenticationError } = require('../utils/auth');
+const mongoose = require('mongoose')
 
 const resolvers = {
   Query: {
     scores: async () => {
-      return await Score.find();
+      // return a listed sorted in ascending order by score
+      return await Score.find().populate('user').sort('score') ;
     },
   },
   Mutation: {
@@ -15,14 +17,19 @@ const resolvers = {
     },
 
     addScore: async (parent, { input }, context) => {
+      try {
       if (context.user) {
-        const score = await Score.create({
+        const newScore = await Score.create({
           ...input,
-          userId: context.user._id,
+          // user id must be converted from string back into objectID data type to be able to create association
+          user: new mongoose.Types.ObjectId(context.user._id),
         });
-
-        return score;
+        const {score, teammates} = newScore;
+        return {score, teammates};
       }
+    } catch (err) {
+      console.log(err)
+    }
       throw AuthenticationError;
     },
 

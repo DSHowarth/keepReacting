@@ -18,7 +18,7 @@ const AppNavbar = () => {
             Temporary Title: Keep Talking
           </Navbar.Brand>
           <Nav>
-            <Nav.Link as={Link} to='/score'>Scores</Nav.Link>
+            <Nav.Link as={Link} to='/scores'>Scores</Nav.Link>
             {Auth.loggedIn() ? (
               <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
             ) : (
