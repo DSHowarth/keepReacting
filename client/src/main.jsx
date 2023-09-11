@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         element: <Manual />,
       },
       {
-        path: "/score",
+        path: "/scores",
         element: <Scores />,
       },
     ],
