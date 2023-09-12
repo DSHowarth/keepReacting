@@ -49,16 +49,11 @@ export default function Game() {
         newPuzzle.id = uniqid();
 
 
-<<<<<<< HEAD
-        // number after * will be determined by the number of puzzles we have. Currently 1
-        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * puzzleList.length)];
-=======
         // Function can use the argument to assign a triage level, otherwise generate random level
         newPuzzle.triageLevel = (level === 0) ? level : level ? level : Math.floor(Math.random() * 3)
 
         // number after * will be determined by the number of puzzles we have. Currently 2
-        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 2)];
->>>>>>> 4aacb9f694904c323748e0591a39d8ea4e04f2d5
+        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * puzzleList.length)];
 
         // create seed for puzzle so it will be the same every time the page renders
         newPuzzle.seed = Math.floor(Math.random() * 1000);
@@ -101,19 +96,6 @@ export default function Game() {
             <>
 
                 <Container fluid>
-<<<<<<< HEAD
-                <Row className={'justify-content-center'}>
-
-                <GameTimer timeRemaining={state.timeRemaining} points={state.points}/>
-                        {state.puzzles.map( (puzzle) => {
-                            return <PuzzleCard 
-                                        key={puzzle.id}
-                                        id={puzzle.id}
-                                        triageLevel={puzzle.triageLevel}
-                                        puzzleType={puzzle.puzzleType} 
-                                        seed={puzzle.seed}
-                                        />
-=======
                     <Row className={'justify-content-center'}>
                         <GameTimer timeRemaining={state.timeRemaining} points={state.points} />
                         {state.puzzles.map((puzzle) => {
@@ -124,7 +106,6 @@ export default function Game() {
                                 puzzleType={puzzle.puzzleType}
                                 seed={puzzle.seed}
                             />
->>>>>>> 4aacb9f694904c323748e0591a39d8ea4e04f2d5
                         })}
                     </Row>
                 </Container>
