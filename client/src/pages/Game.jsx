@@ -18,26 +18,24 @@ export default function Game() {
     // boolean for switching between game and save score screen
     const [gameActive, setGameActive] = useState(true);
 
-    const [onOff, setOnOff] = useState(true)
-
     // string of puzzle names, elements to be passed along to child components for conversion into actual components
     const puzzleList = ['letterCypher', 'wordNumber', 'buttonOrder'];
 
     // checking to see if a new puzzle should be added
-    const puzzleGenBool = (time) => {
-        // setting max number of puzzles that can exist at once
-        if (state.puzzles.length < 10) {
-            const diceRoll = Math.floor(Math.random() * 100);
+    // const puzzleGenBool = () => {
+    //     // setting max number of puzzles that can exist at once
+    //     if (state.puzzles.length < 6) {
+    //         const diceRoll = Math.floor(Math.random() * 100);
 
-            //TODO: add logic for adding to the dice roll as the timer ticks down
+    //         //TODO: add logic for adding to the dice roll as the timer ticks down
 
-            if (diceRoll > 95) {
-                return true;
-            }
-        }
+    //         if (diceRoll > 95) {
+    //             return true;
+    //         }
+    //     }
 
-        return false;
-    };
+    //     return false;
+    // };
 
     // creates a new, randomly generated puzzle and adds it to the list of active puzzles for React to draw.
     const generatePuzzle = (level) => {
@@ -69,13 +67,15 @@ export default function Game() {
         generatePuzzle(0)
         generatePuzzle(0)
 
+        let counter = 0;
         // interval updates every second, checking to see if the player has run out of time 
         // while the game goes on, the points total increases every second 
         interval.current = setInterval(() => {
             if (gameActive) {
                 dispatch({ type: REDUCE_TIMER })
                 dispatch({ type: INCREASE_SCORE });
-                if (puzzleGenBool()) {
+                counter++
+                if (!(counter % 15)) {
                     generatePuzzle();
                 }
             }
