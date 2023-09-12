@@ -97,3 +97,26 @@ td {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
+
+.card-effect {
+  border: 4px solid #347FC4; 
+  animation: borderShine 2s infinite;
+}
+
+
+@keyframes borderShine {
+  0% {
+    border-color: #24dd8d;
+  }
+  50% {
+    border-color: #ffc907; 
+  }
+  100% {
+    border-color: #347FC4;
+  }
+}
+
+
+
+
+
