@@ -19,7 +19,7 @@ export default function Game () {
     const [gameActive, setGameActive] = useState(true);
 
     // string of puzzle names, elements to be passed along to child components for conversion into actual components
-    const puzzleList = ['letterCypher'];
+    const puzzleList = ['letterCypher', 'buttonOrder'];
 
     // checking to see if a new puzzle should be added
     const puzzleGenBool = (time) => {
@@ -49,7 +49,7 @@ export default function Game () {
         newPuzzle.triageLevel =  (level === 0) ? level : level ? level : Math.floor(Math.random() * 3)
 
         // number after * will be determined by the number of puzzles we have. Currently 1
-        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 1)];
+        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * puzzleList.length)];
 
         // create seed for puzzle so it will be the same every time the page renders
         newPuzzle.seed = Math.floor(Math.random() * 1000);

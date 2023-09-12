@@ -1,10 +1,12 @@
 import LetterCypher from './Puzzles/LetterCypher';
+import ButtonOrder from './Puzzles/ButtonOrder';
 import Card from 'react-bootstrap/Card';
 
 export default function PuzzleCard ({ id, triageLevel, puzzleType, seed }) {
 
     const puzzleObj = {
-        'letterCypher': <LetterCypher seed={seed} triageLevel={triageLevel} puzzleId={id}/>
+        'letterCypher': <LetterCypher seed={seed} triageLevel={triageLevel} puzzleId={id}/>,
+        'buttonOrder': <ButtonOrder seed={seed} triageLevel={triageLevel} puzzleId={id}/>
     }
 
     return(
