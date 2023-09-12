@@ -4,8 +4,6 @@ import Auth from '../utils/auth';
 import { useLocation } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
 
 export default function Home() {
 
@@ -31,7 +29,6 @@ export default function Home() {
         </LinkContainer>
         {!Auth.loggedIn() && 
           <p>Please log in to play the game. Viewing the manual can be done by anyone, though!</p>}
-        <br />
         <LinkContainer to="/manual">
           <motion.button
             whileHover={{ scale: 1.2 }}

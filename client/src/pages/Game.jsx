@@ -5,8 +5,6 @@ import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from '../components/PuzzleCard';
 import GameTimer from '../components/GameTimer';
 import SaveScore from '../components/SaveScore';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 
 export default function Game() {
     // bring in our game context
