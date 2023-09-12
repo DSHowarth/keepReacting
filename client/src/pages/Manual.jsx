@@ -46,7 +46,7 @@ const Manual = () => {
 
   const colorRows = colors.map((color, index) => (
     <tr key={index} style={{ backgroundColor: color }}>
-      <td>↓</td>
+      <td>↓ </td>
     </tr>
   ));
 
@@ -54,7 +54,7 @@ const Manual = () => {
     <div>
       <h1 className="manual-h1">Game Manual</h1>
 
-      <div className="d-flex flex-column align-items-start">
+      <div className="d-flex flex-row justify-content-center align-items-start">
         {/* First Card */}
         <Card
           className={`mb-2 ${showTable1 ? "table-open" : ""}`}
