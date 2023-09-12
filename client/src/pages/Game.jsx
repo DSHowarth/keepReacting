@@ -93,10 +93,8 @@ export default function Game () {
 
                 <Container fluid>
                 <Row className={'justify-content-center'}>
-                {/* Time formatting: 
-                Converts remaining time into a date object, which is then converted to an ISO string, then sliced away 
-                to just reveal minutes:seconds. A very elegant solution, thank you several stackoverflow users. Too many to name. */}
-                <GameTimer timeRemaining={new Date(state.timeRemaining * 1000).toISOString().substring(14, 19)} points={state.points}/>
+
+                <GameTimer timeRemaining={state.timeRemaining} points={state.points}/>
                         {state.puzzles.map( (puzzle) => {
                             return <PuzzleCard 
                                         key={puzzle.id}

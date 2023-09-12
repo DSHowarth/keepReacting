@@ -1,5 +1,5 @@
 body {
-  background-color: #272838;
+  background-color: #121213;
   color: white;
 }
 
@@ -7,6 +7,11 @@ body {
   margin: 0 auto;
   text-align: center;
 
+}
+
+.navBarStyleOverwrite {
+  background-color: #347FC4;
+  margin-bottom: 10px;
 }
 
 .card {
@@ -38,6 +43,10 @@ body {
 .triage-2 {
   background-color: red;
   color: black;
+}
+
+.warningTimer {
+  color: #CD1717
 }
 
 /* Style for the h1 element */

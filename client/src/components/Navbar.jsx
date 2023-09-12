@@ -12,10 +12,10 @@ const AppNavbar = () => {
   return (
     <>
       {/* Navbar layout */}
-      <Navbar>
+      <Navbar className={'navBarStyleOverwrite'}>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Temporary Title: Keep Talking
+            Keep Reacting and No One Gets Sued
           </Navbar.Brand>
           <Nav>
             <Nav.Link as={Link} to='/scores'>Scores</Nav.Link>
