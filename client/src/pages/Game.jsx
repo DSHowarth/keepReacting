@@ -92,21 +92,16 @@ export default function Game() {
     if (gameActive) {
         return (
             <>
-
-                <Container fluid>
-                    <Row className={'justify-content-center'}>
-                        <GameTimer timeRemaining={state.timeRemaining} points={state.points} />
-                        {state.puzzles.map((puzzle) => {
-                            return <PuzzleCard
-                                key={puzzle.id}
-                                id={puzzle.id}
-                                triageLevel={puzzle.triageLevel}
-                                puzzleType={puzzle.puzzleType}
-                                seed={puzzle.seed}
-                            />
-                        })}
-                    </Row>
-                </Container>
+                <GameTimer timeRemaining={state.timeRemaining} points={state.points} />
+                {state.puzzles.map((puzzle) => {
+                    return <PuzzleCard
+                        key={puzzle.id}
+                        id={puzzle.id}
+                        triageLevel={puzzle.triageLevel}
+                        puzzleType={puzzle.puzzleType}
+                        seed={puzzle.seed}
+                    />
+                })}
             </>
         )
     }
