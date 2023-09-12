@@ -36,13 +36,13 @@ body {
 }
 
 /* Style for the h2 element */
-.manul-h2{
+.manual-h2{
   font-size: 24px;
   margin-bottom: 10px;
 }
 
 /* Style for the table */
-.manul-table {
+.manual-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;

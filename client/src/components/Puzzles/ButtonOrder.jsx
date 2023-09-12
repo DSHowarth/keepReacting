@@ -13,13 +13,16 @@ export default function ButtonOrder ({ puzzleId, triageLevel, seed }) {
 
     const seededRng = rng.create(seed);
 
+    // list of colors. The order of the array is their order of priority (descending)
     const colors = ['white', 'black', 'green', 'red', 'blue', 'violet', 'yellow', 'orange'];
 
     let genOrder = [];
-
     let genObj = {};
 
+    // create randomly generated order. It's in a while loop and not a for loop to prevent 
+    // duplicate entries
     while (genOrder.length < 4) {
+        // use seeded rng for consistency over renders
         let newIndex = seededRng.range(colors.length)
         if (!genObj[newIndex]) {
             genOrder.push(newIndex);
@@ -27,60 +30,33 @@ export default function ButtonOrder ({ puzzleId, triageLevel, seed }) {
         }
     }
 
+    // sort the randomly generated order to create our answer
     let answer = [...genOrder].sort((a, b) => a - b).toString();
 
+    // 
     const updatePlayerGuess = (event) => {
         const { id } = event.target;
         let temp = playerGuess;
+        // guess length is equal to the max number of buttons. Players just need to get them in order
         if(temp.length == 4){
             temp.shift();
         }
 
+        //
         temp.push(id);
         setPlayerGuess(temp);
 
-
+        // after each update, check whether they have the correct answer. Convert to string to allow
+        // use of logical operator
         if (playerGuess.toString() === answer) {
             dispatch({type: REMOVE_PUZZLE, payload: {puzzleId, triageLevel}})
         }
         
     }
 
-    console.log(playerGuess)
-    console.log(answer)
-
-
-
-
-    // const answerCheck = (event) => {
-    //     event.preventDefault();
-
-    //     if (!(playerGuess.length === answer.length)) {
-    //         return;
-    //     }
-
-    //     try {
-    //         const guessUpper = playerGuess.toUpperCase();
-    //         for (var i = 0; i < guessUpper.length; i++) {
-    //             // if there ever isn't a match, stop checking. 
-    //             // if loop finishes without ever hitting a bad match,
-    //             // remove puzzle from page
-    //             // finds the index of their input in the regular alphabet, and if that matches the answer key, do nothing
-    //             if (!(alphabet.indexOf(guessUpper[i]) === answer[i])) {
-    //                 return;
-    //             }
-    //         }
-    //         dispatch({type: REMOVE_PUZZLE, payload: {puzzleId, triageLevel}})
-            
-    //     } catch {
-    //         console.log('TODO: Add player feedback for incorrect guess format')
-    //     }
-    // }
-
-
-
     return (
         <>
+        {/* Generate list of buttons */}
             {genOrder.map((index) => {
                 return <Button key={index}
                             style={{backgroundColor: `${colors[index]}`}}
