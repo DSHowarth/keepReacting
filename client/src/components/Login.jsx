@@ -9,7 +9,7 @@ const Login = () => {
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const [login] = useMutation(LOGIN_USER);
+  const [login, {loading }] = useMutation(LOGIN_USER);
 
   //Update value of input
   const handleInputChange = (event) => {
@@ -84,7 +84,7 @@ const Login = () => {
         </Form.Group>
         {/* Only clickable when fields have content */}
         <Button
-          disabled={!(userFormData.email && userFormData.password)}
+          disabled={!(userFormData.email && userFormData.password) || loading}
           type='submit'>
           Submit
         </Button>
