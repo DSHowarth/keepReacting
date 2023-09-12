@@ -8,7 +8,7 @@ import SaveScore from '../components/SaveScore';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-export default function Game () {
+export default function Game() {
     // bring in our game context
     const [state, dispatch] = useGameContext();
 
@@ -19,17 +19,17 @@ export default function Game () {
     const [gameActive, setGameActive] = useState(true);
 
     // string of puzzle names, elements to be passed along to child components for conversion into actual components
-    const puzzleList = ['letterCypher'];
+    const puzzleList = ['letterCypher', 'wordNumber'];
 
     // checking to see if a new puzzle should be added
     const puzzleGenBool = (time) => {
         // setting max number of puzzles that can exist at once
         if (state.puzzles.length < 10) {
             const diceRoll = Math.floor(Math.random() * 100);
-            
+
             //TODO: add logic for adding to the dice roll as the timer ticks down
 
-            if(diceRoll > 95) {
+            if (diceRoll > 95) {
                 return true;
             }
         }
@@ -44,21 +44,21 @@ export default function Game () {
         // add unique Id so we can find it later to remove
         newPuzzle.id = uniqid();
 
-        
-        // Function can use the argument to assign a triage level, otherwise generate random level
-        newPuzzle.triageLevel =  (level === 0) ? level : level ? level : Math.floor(Math.random() * 3)
 
-        // number after * will be determined by the number of puzzles we have. Currently 1
-        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 1)];
+        // Function can use the argument to assign a triage level, otherwise generate random level
+        newPuzzle.triageLevel = (level === 0) ? level : level ? level : Math.floor(Math.random() * 3)
+
+        // number after * will be determined by the number of puzzles we have. Currently 2
+        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 2)];
 
         // create seed for puzzle so it will be the same every time the page renders
         newPuzzle.seed = Math.floor(Math.random() * 1000);
 
-        dispatch({type: ADD_PUZZLE, payload: newPuzzle});
+        dispatch({ type: ADD_PUZZLE, payload: newPuzzle });
     };
 
-    useEffect( () => {
-        
+    useEffect(() => {
+
         // generate 5 puzzles on game start, 1 high priority, 2 medium priority, 2 low priority
 
         generatePuzzle(2)
@@ -69,16 +69,16 @@ export default function Game () {
 
         // interval updates every second, checking to see if the player has run out of time 
         // while the game goes on, the points total increases every second 
-        interval.current = setInterval( () => {
+        interval.current = setInterval(() => {
             if (gameActive) {
-                dispatch({type: REDUCE_TIMER})
-                dispatch({ type: INCREASE_SCORE});
+                dispatch({ type: REDUCE_TIMER })
+                dispatch({ type: INCREASE_SCORE });
                 if (puzzleGenBool()) {
                     generatePuzzle();
                 }
             }
         }
-        , 1000)
+            , 1000)
     }, []);
 
     // When the timer hits 0, clear the interval and change screen to 'save score'
@@ -92,21 +92,21 @@ export default function Game () {
             <>
 
                 <Container fluid>
-                <Row className={'justify-content-center'}>
-                <GameTimer timeRemaining={state.timeRemaining} points={state.points}/>
-                        {state.puzzles.map( (puzzle) => {
-                            return <PuzzleCard 
-                                        key={puzzle.id}
-                                        id={puzzle.id}
-                                        triageLevel={puzzle.triageLevel}
-                                        puzzleType={puzzle.puzzleType} 
-                                        seed={puzzle.seed}
-                                        />
+                    <Row className={'justify-content-center'}>
+                        <GameTimer timeRemaining={state.timeRemaining} points={state.points} />
+                        {state.puzzles.map((puzzle) => {
+                            return <PuzzleCard
+                                key={puzzle.id}
+                                id={puzzle.id}
+                                triageLevel={puzzle.triageLevel}
+                                puzzleType={puzzle.puzzleType}
+                                seed={puzzle.seed}
+                            />
                         })}
-                </Row>
+                    </Row>
                 </Container>
             </>
-            )
+        )
     }
 
     return (
