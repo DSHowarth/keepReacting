@@ -1,11 +1,17 @@
 import { motion } from "framer-motion";
 import { LinkContainer } from "react-router-bootstrap";
 import Auth from '../utils/auth';
+import { useLocation } from 'react-router-dom';
 
 export default function Home() {
+
+  let { state } = useLocation();
+
   return (
     <>
       <h1> Welcome to the Game</h1>
+      {/* TODO: Make this more visually appealing */}
+      {state?.scoreSubmit && <p>Score Saved</p>}
       <LinkContainer to="/game">
         <motion.button
           whileHover={{ scale: 1.2 }}
