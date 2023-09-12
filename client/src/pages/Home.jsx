@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { LinkContainer } from "react-router-bootstrap";
 import Auth from '../utils/auth';
 import { useLocation } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
 
@@ -11,7 +13,8 @@ export default function Home() {
     <>
       <h1> Welcome to the Game</h1>
       {/* TODO: Make this more visually appealing */}
-      {state?.scoreSubmit && <p>Score Saved</p>}
+      {state?.scoreSubmit && 
+        <Alert variant='success'>Your Score has been Saved! Head to the <Link to='/scores'>Scores tab</Link> to see how you ranked!</Alert>}
       <LinkContainer to="/game">
         <motion.button
           whileHover={{ scale: 1.2 }}
