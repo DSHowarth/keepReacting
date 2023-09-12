@@ -32,21 +32,21 @@ const Manual = () => {
   }
 
   const colors = [
-    "white",
-    "black",
-    "green",
-    "red",
-    "blue",
-    "violet",
-    "yellow",
-    "orange",
-    "gray",
-    "cyan",
+    "#FFFFFF",
+    "#000000",
+    "#008000",
+    "#FF0000",
+    "#0000FF",
+    "#EE82EE",
+    "#FFFF00",
+    "#FFA500",
+    "#808080",
+    "#00FFFF",
   ];
 
   const colorRows = colors.map((color, index) => (
-    <tr key={index}>
-      <td>{color}</td>
+    <tr key={index} style={{ backgroundColor: color }}>
+      <td>↓</td>
     </tr>
   ));
 
