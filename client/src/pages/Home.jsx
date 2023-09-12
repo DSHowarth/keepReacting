@@ -47,10 +47,11 @@ export default function Home() {
           On the game page, the driver will see a timer, a point counter, and several puzzles. While each puzzle exists, the points counter will increase based on its
           Triage level: <br/>
           <span style={{backgroundColor: 'red', color: 'black'}}>Red puzzles are your highest priority</span><br/>
-          <span style={{backgroundColor: 'yellow', color: 'black'}}>Red puzzles are your second highest priority</span><br/>
+          <span style={{backgroundColor: 'yellow', color: 'black'}}>Yellow puzzles are your second highest priority</span><br/>
           <span style={{backgroundColor: 'green', color: 'black'}}>Green puzzles are your lowest priority</span><br/>
           But they all matter!<br/>
           <span style={{fontSize: '50px'}}>Your goal is to get the lowest score possible!</span><br/>
+          The bar below your points total tells you how fast your score is increasing. Keep that bar small and green.<br/><br/>
           The puzzles all have their own set of cryptic clues. We won't tell you exactly how to solve them, but your teammates can: <br/>
           Anyone assisting in the game should click the 'Manual' button on their own device. That manual contains all of the information you need
           to solve every puzzle - if you know how to read it. <br/>

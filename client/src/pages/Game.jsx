@@ -5,6 +5,7 @@ import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from '../components/PuzzleCard';
 import GameTimer from '../components/GameTimer';
 import SaveScore from '../components/SaveScore';
+import Row from 'react-bootstrap/Row';
 
 export default function Game() {
     // bring in our game context
@@ -90,7 +91,9 @@ export default function Game() {
     if (gameActive) {
         return (
             <>
+            
                 <GameTimer timeRemaining={state.timeRemaining} points={state.points} increment={state.pointIncrement} />
+            <Row className={'justify-content-center'}>
                 {state.puzzles.map((puzzle) => {
                     return <PuzzleCard
                         key={puzzle.id}
@@ -100,6 +103,7 @@ export default function Game() {
                         seed={puzzle.seed}
                     />
                 })}
+            </Row>
             </>
         )
     }
