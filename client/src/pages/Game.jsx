@@ -15,11 +15,13 @@ export default function Game() {
     // declare useRef object for our intervalId
     const interval = useRef();
 
-    // state variables for time and point increment, and boolean for switching between game and save score screen
+    // boolean for switching between game and save score screen
     const [gameActive, setGameActive] = useState(true);
 
+    const [onOff, setOnOff] = useState(true)
+
     // string of puzzle names, elements to be passed along to child components for conversion into actual components
-    const puzzleList = ['letterCypher', 'wordNumber'];
+    const puzzleList = ['letterCypher', 'wordNumber', 'buttonOrder'];
 
     // checking to see if a new puzzle should be added
     const puzzleGenBool = (time) => {
@@ -49,7 +51,7 @@ export default function Game() {
         newPuzzle.triageLevel = (level === 0) ? level : level ? level : Math.floor(Math.random() * 3)
 
         // number after * will be determined by the number of puzzles we have. Currently 2
-        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * 2)];
+        newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * puzzleList.length)];
 
         // create seed for puzzle so it will be the same every time the page renders
         newPuzzle.seed = Math.floor(Math.random() * 1000);

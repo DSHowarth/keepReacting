@@ -30,7 +30,9 @@ export default function SaveScore ({ points }) {
                 teammates: teammates,
             }
             await addScore({ variables: {input: newScore}});
-            navigate('/');
+            // if successful, redirect user to home page and pass along a boolean to display the 'score saved' confirmation when
+            // they get there. 
+            navigate('/', {state: {scoreSubmit: true}});
         } catch (err) {
             console.log(err)
             setShowAlert(true);
