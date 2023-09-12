@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
-import GameWrapper from "./components/GameWrapper.jsx";
+import Game from "./pages/Game.jsx";
 import Scores from "./pages/Scores.jsx";
 import Manual from "./pages/Manual.jsx";
 
@@ -22,14 +22,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/game",
-        element: <GameWrapper />,
+        element: <Game />,
       },
       {
         path: "/manual",
         element: <Manual />,
       },
       {
-        path: "/scores",
+        path: "/score",
         element: <Scores />,
       },
     ],
