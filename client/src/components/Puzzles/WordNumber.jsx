@@ -13,7 +13,7 @@ export default function WordNumber({ puzzleId, triageLevel, seed }) {
 
   const seededRng = rng.create(seed);
 
-  const wordBank = ['APPLE', 'ORANGE', 'BANANA', 'GRAPE', 'KIWI', 'MANGOSTEEN'];
+  const wordBank = ['APPLE', 'ORANGE', 'BANANA', 'GRAPE', 'KIWI', 'MANGO'];
   //letters and there values
   const letters = {
     A: 1,
@@ -33,12 +33,13 @@ export default function WordNumber({ puzzleId, triageLevel, seed }) {
 
   const choosenWord = wordBank[seededRng.range(wordBank.length)]
 
-  let answer;
+  let answer = 0;
   //choose random word from word bank
   let clue = choosenWord;
 
+  //add sum of choosen word values to answer
   for (let i = 0; i < choosenWord.length; i++) {
-    clue += letters[choosenWord[i]]
+    answer += letters[choosenWord[i]]
   }
 
   const updatePlayerGuess = (event) => {
@@ -49,11 +50,10 @@ export default function WordNumber({ puzzleId, triageLevel, seed }) {
   const answerCheck = (event) => {
     event.preventDefault();
 
-    if (!(playerGuess.length === answer.length)) {
-      return;
-    }
-
     try {
+      if (!playerGuess === answer) {
+        return;
+      }
 
       dispatch({ type: REMOVE_PUZZLE, payload: { puzzleId, triageLevel } })
 
@@ -67,7 +67,7 @@ export default function WordNumber({ puzzleId, triageLevel, seed }) {
       <h1>{clue}</h1>
       <Form onSubmit={answerCheck}>
         <Form.Group>
-          <Form.Control type="text" onChange={updatePlayerGuess} value={playerGuess} />
+          <Form.Control type="text" onChange={updatePlayerGuess} value={playerGuess} style={{ border: '2px solid black' }} />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit
