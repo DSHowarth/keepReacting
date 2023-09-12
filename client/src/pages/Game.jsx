@@ -93,7 +93,7 @@ export default function Game () {
 
                 <Container fluid>
                 <Row className={'justify-content-center'}>
-                <GameTimer timeRemaining={state.timeRemaining} points={state.points}/>
+                <GameTimer timeRemaining={new Date(state.timeRemaining * 1000).toISOString().substring(14, 19)} points={state.points}/>
                         {state.puzzles.map( (puzzle) => {
                             return <PuzzleCard 
                                         key={puzzle.id}

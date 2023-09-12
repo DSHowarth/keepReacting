@@ -11,7 +11,18 @@ body {
 
 .card {
   padding: 2em;
-  margin: 10px;
+  margin: 2em;
+  height: 300px;
+  width: 500px;
+  justify-content: center;
+}
+
+
+.bigButton {
+  width: 85%;
+  height: 23%;
+  margin-bottom: 5px;
+  border: 2px solid black;
 }
 
 .triage-0 {
@@ -55,3 +66,4 @@ td {
   padding: 8px;
   text-align: left;
 }
+

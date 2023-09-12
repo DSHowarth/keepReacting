@@ -1,8 +1,8 @@
 import rng from 'random-seed'
 import { useState } from 'react';
 import { useGameContext } from '../../utils/GameContext';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import { REMOVE_PUZZLE } from '../../utils/actions'
 
 export default function ButtonOrder ({ puzzleId, triageLevel, seed }) {
