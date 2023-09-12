@@ -15,15 +15,13 @@ export default function Game() {
     // declare useRef object for our intervalId
     const interval = useRef();
 
-    // state variables for time and point increment, and boolean for switching between game and save score screen
+    // boolean for switching between game and save score screen
     const [gameActive, setGameActive] = useState(true);
 
+    const [onOff, setOnOff] = useState(true)
+
     // string of puzzle names, elements to be passed along to child components for conversion into actual components
-<<<<<<< HEAD
-    const puzzleList = ['letterCypher', 'buttonOrder'];
-=======
-    const puzzleList = ['letterCypher', 'wordNumber'];
->>>>>>> 4aacb9f694904c323748e0591a39d8ea4e04f2d5
+    const puzzleList = ['letterCypher', 'wordNumber', 'buttonOrder'];
 
     // checking to see if a new puzzle should be added
     const puzzleGenBool = (time) => {
