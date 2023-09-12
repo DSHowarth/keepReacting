@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-// import "./Page.css";
+import Card from "react-bootstrap/Card";
 
 const Manual = () => {
-  const [cypherTable, setCypherTable] = useState("");
-  const [wordHint, setWordHint] = useState("");
-  const [selectedColor, setSelectedColor] = useState("");
-
   const greek = "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς";
   const alphabet = "ZKFYPEXTRNGQLUAMSIJBCODWVH";
+  const color = [
+    "white",
+    "black",
+    "green",
+    "red",
+    "blue",
+    "violet",
+    "yellow",
+    "orange",
+    "gray",
+    "cyan",
+  ];
 
-  // Create an array of rows based on the greek and alphabet strings
+  const [showTable, setShowTable] = useState(false);
+
+  const toggleTable = () => {
+    setShowTable(!showTable);
+  };
+
   const rows = [];
   for (let i = 0; i < greek.length; i++) {
     const greekLetter = greek[i];
@@ -27,13 +40,33 @@ const Manual = () => {
     <div>
       <h1 className="manual-h1">Game Manual</h1>
 
-      {/* Cypher Table */}
-      <div>
-        <h2 className="manual-h2">Cypher Table</h2>
-        {/* Table with header cell and data cell styles */}
-        <table className="manual-table">
-          <tbody>{rows}</tbody>
-        </table>
+      <div className="d-flex flex-column align-items-start">
+        {/* Card with Table */}
+        <Card
+          className={`mb-2 ${showTable ? "table-open" : ""}`}
+          onClick={toggleTable}
+          style={{ height: showTable ? "5%" : "100%" }}
+        >
+          <Card.Body>
+            <Card.Title> Click here for hint</Card.Title>
+            {showTable && (
+              <div className="popup">
+                <button onClick={toggleTable}>Close</button>
+                <table className="manual-table">
+                  <tbody>{rows}</tbody>
+                </table>
+              </div>
+            )}
+          </Card.Body>
+        </Card>
+
+        {/* Second Card */}
+        <Card className="mb-2">
+          <Card.Body>
+            <Card.Title>Second Card</Card.Title>
+            {/* Add content for the second card here */}
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );
