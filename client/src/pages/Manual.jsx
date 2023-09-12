@@ -4,23 +4,18 @@ import Card from "react-bootstrap/Card";
 const Manual = () => {
   const greek = "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩσς";
   const alphabet = "ZKFYPEXTRNGQLUAMSIJBCODWVH";
-  const color = [
-    "white",
-    "black",
-    "green",
-    "red",
-    "blue",
-    "violet",
-    "yellow",
-    "orange",
-    "gray",
-    "cyan",
-  ];
 
-  const [showTable, setShowTable] = useState(false);
+  // State variables for each card
+  const [showTable1, setShowTable1] = useState(false);
+  const [showTable2, setShowTable2] = useState(false);
 
-  const toggleTable = () => {
-    setShowTable(!showTable);
+  // Functions to toggle the tables for each card
+  const toggleTable1 = () => {
+    setShowTable1(!showTable1);
+  };
+
+  const toggleTable2 = () => {
+    setShowTable2(!showTable2);
   };
 
   const rows = [];
@@ -36,22 +31,41 @@ const Manual = () => {
     );
   }
 
+  const colors = [
+    "white",
+    "black",
+    "green",
+    "red",
+    "blue",
+    "violet",
+    "yellow",
+    "orange",
+    "gray",
+    "cyan",
+  ];
+
+  const colorRows = colors.map((color, index) => (
+    <tr key={index}>
+      <td>{color}</td>
+    </tr>
+  ));
+
   return (
     <div>
       <h1 className="manual-h1">Game Manual</h1>
 
       <div className="d-flex flex-column align-items-start">
-        {/* Card with Table */}
+        {/* First Card */}
         <Card
-          className={`mb-2 ${showTable ? "table-open" : ""}`}
-          onClick={toggleTable}
-          style={{ height: showTable ? "5%" : "100%" }}
+          className={`mb-2 ${showTable1 ? "table-open" : ""}`}
+          onClick={toggleTable1}
+          style={{ height: showTable1 ? "5%" : "100%" }}
         >
           <Card.Body>
-            <Card.Title> Click here for hint</Card.Title>
-            {showTable && (
+            <Card.Title>Click here for hint</Card.Title>
+            {showTable1 && (
               <div className="popup">
-                <button onClick={toggleTable}>Close</button>
+                <button onClick={toggleTable1}>Close</button>
                 <table className="manual-table">
                   <tbody>{rows}</tbody>
                 </table>
@@ -61,10 +75,21 @@ const Manual = () => {
         </Card>
 
         {/* Second Card */}
-        <Card className="mb-2">
+        <Card
+          className={`mb-2 ${showTable2 ? "table-open" : ""}`}
+          onClick={toggleTable2}
+          style={{ height: showTable2 ? "5%" : "100%" }}
+        >
           <Card.Body>
-            <Card.Title>Second Card</Card.Title>
-            {/* Add content for the second card here */}
+            <Card.Title>Click here for hint</Card.Title>
+            {showTable2 && (
+              <div className="popup">
+                <button onClick={toggleTable2}>Close</button>
+                <table className="manual-table">
+                  <tbody>{colorRows}</tbody>
+                </table>
+              </div>
+            )}
           </Card.Body>
         </Card>
       </div>
