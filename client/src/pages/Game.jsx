@@ -90,7 +90,7 @@ export default function Game() {
     if (gameActive) {
         return (
             <>
-                <GameTimer timeRemaining={state.timeRemaining} points={state.points} />
+                <GameTimer timeRemaining={state.timeRemaining} points={state.points} increment={state.pointIncrement} />
                 {state.puzzles.map((puzzle) => {
                     return <PuzzleCard
                         key={puzzle.id}
