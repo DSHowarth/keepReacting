@@ -14,7 +14,7 @@ export default function ButtonOrder ({ puzzleId, triageLevel, seed }) {
     const seededRng = rng.create(seed);
 
     // list of colors. The order of the array is their order of priority (descending)
-    const colors = ['white', 'black', 'green', 'red', 'blue', 'violet', 'yellow', 'orange'];
+    const colors = ['white', 'black', 'green', 'red', 'blue', 'violet', 'yellow', 'orange', 'gray', 'cyan'];
 
     let genOrder = [];
     let genObj = {};
