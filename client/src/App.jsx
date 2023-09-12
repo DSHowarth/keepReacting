@@ -6,6 +6,8 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { Outlet } from "react-router-dom";
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
@@ -34,7 +36,11 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <AppNavbar />
-        <Outlet />
+        <Container>
+          <Row className={'justify-content-center'}>
+            <Outlet />
+          </Row>
+        </Container>
     </ApolloProvider>
   );
 }

@@ -41,7 +41,7 @@ export default function SaveScore ({ points }) {
 
     return (
         <>
-            <Form onSubmit={submitScore}>
+            <Form onSubmit={submitScore} style={{width: '50%'}}>
                 <p>Congratulations, you scored {points} points! 
                 Would you like to save your score?</p>
                 <Form.Group>

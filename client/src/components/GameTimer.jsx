@@ -1,5 +1,5 @@
-
-export default function GameTimer ({timeRemaining, points}) {
+import ProgressBar from 'react-bootstrap/ProgressBar';
+export default function GameTimer ({timeRemaining, points, increment}) {
 
     return (
         <>
@@ -9,7 +9,8 @@ export default function GameTimer ({timeRemaining, points}) {
             <h1>Time Remaining: <span className={timeRemaining < 30 ? 'warningTimer' : undefined}> 
                             {new Date(timeRemaining * 1000).toISOString().substring(14, 19)}</span>
             </h1>
-            <h2>Points: {points}</h2>
+            <h2>Points: {points}</h2>   
+            <ProgressBar animated variant={(increment < 100) ? 'success' : (increment < 200) ? 'warning' : 'danger'} now={increment/3} style={{width: '50%', padding: '0px'}}/>
         </>
     )
 };
