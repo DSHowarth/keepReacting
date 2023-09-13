@@ -12,23 +12,25 @@ export default function Home() {
 
   return (
     <>
-        <h1> Welcome to the Game</h1>
+        <h1> Welcome to Keep Reacting and No One Gets Sued!</h1>
         <Row className={'justify-content-center'}>
         {state?.scoreSubmit && 
           <Alert variant='success' style={{width: '50%'}}>
               Your Score has been Saved! Head to the <Link to='/scores'>Scores tab</Link> to see how you ranked!
           </Alert>}
-        <LinkContainer to="/game">
-          <motion.button
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.8 }}
-            type="submit"
-            disabled={!Auth.loggedIn()}
-            className={'playButton'}
-          >
-            Play
-          </motion.button>
-        </LinkContainer>
+        </Row>
+        <Row className={'justify-content-center'}>
+          <LinkContainer to="/game">
+            <motion.button
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.8 }}
+              type="submit"
+              disabled={!Auth.loggedIn()}
+              className={'playButton'}
+            >
+              Play
+            </motion.button>
+          </LinkContainer>
         </Row>
         {!Auth.loggedIn() && 
           <p>Please log in to play the game. Viewing the manual can be done by anyone, though!</p>}
