@@ -1,17 +1,20 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useRouteError } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
 export default function Error() {
-  let location = useLocation();
+  const location = useLocation();
+  const error = useRouteError();
+
   return (
     <>
       <div className="d-flex justify-content-center">
-        <div className="card bg-dark card-rounded w-50 justify-content">
-          <div className="card-header rounded bg-white text-center">
+        <Card className="bg-dark rounded w-50 justify-content">
+          <Card.Header className="rounded bg-white text-center">
             <h1>
-              <span className="text-primary">{location.pathname}</span> not found
+              <span className="text-primary">{location.pathname}</span> {error.statusText || error.message}
             </h1>
-          </div>
-        </div>
+          </Card.Header>
+        </Card>
       </div>
     </>
   )
