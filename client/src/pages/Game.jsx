@@ -1,7 +1,7 @@
 import { useGameContext } from '../utils/GameContext';
 import uniqid from 'uniqid';
 import { useEffect, useState, useRef } from 'react';
-import { ADD_PUZZLE, INCREASE_SCORE, REDUCE_TIMER } from '../utils/actions';
+import { ADD_PUZZLE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from '../components/PuzzleCard';
 import GameTimer from '../components/GameTimer';
 import SaveScore from '../components/SaveScore';
@@ -37,15 +37,11 @@ export default function Game() {
     // };
 
     // creates a new, randomly generated puzzle and adds it to the list of active puzzles for React to draw.
-    const generatePuzzle = (level) => {
+    const generatePuzzle = () => {
         const newPuzzle = {};
 
         // add unique Id so we can find it later to remove
         newPuzzle.id = uniqid();
-
-
-        // Function can use the argument to assign a triage level, otherwise generate random level
-        newPuzzle.triageLevel = (level === 0) ? level : level ? level : Math.floor(Math.random() * 3)
 
         // number after * will be determined by the number of puzzles we have. Currently 2
         newPuzzle.puzzleType = puzzleList[Math.floor(Math.random() * puzzleList.length)];
@@ -72,7 +68,6 @@ export default function Game() {
         interval.current = setInterval(() => {
             if (gameActive) {
                 dispatch({ type: REDUCE_TIMER })
-                dispatch({ type: INCREASE_SCORE });
                 counter++
                 if (!(counter % 15)) {
                     generatePuzzle();
@@ -92,13 +87,12 @@ export default function Game() {
         return (
             <>
             
-                <GameTimer timeRemaining={state.timeRemaining} points={state.points} increment={state.pointIncrement} />
+                <GameTimer timeRemaining={state.timeRemaining}/>
             <Row className={'justify-content-center'}>
                 {state.puzzles.map((puzzle) => {
                     return <PuzzleCard
                         key={puzzle.id}
                         id={puzzle.id}
-                        triageLevel={puzzle.triageLevel}
                         puzzleType={puzzle.puzzleType}
                         seed={puzzle.seed}
                     />

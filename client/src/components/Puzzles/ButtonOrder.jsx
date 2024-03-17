@@ -4,7 +4,7 @@ import { useGameContext } from '../../utils/GameContext';
 import Button from 'react-bootstrap/Button';
 import { REMOVE_PUZZLE } from '../../utils/actions'
 
-export default function ButtonOrder ({ puzzleId, triageLevel, seed }) {
+export default function ButtonOrder ({ puzzleId, seed }) {
 
     const [state, dispatch] = useGameContext();
 
@@ -48,7 +48,7 @@ export default function ButtonOrder ({ puzzleId, triageLevel, seed }) {
         // after each update, check whether they have the correct answer. Convert to string to allow
         // use of logical operator
         if (playerGuess.toString() === answer) {
-            dispatch({type: REMOVE_PUZZLE, payload: {puzzleId, triageLevel}})
+            dispatch({type: REMOVE_PUZZLE, payload: {puzzleId}})
         }
         
     }

@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { REMOVE_PUZZLE } from '../../utils/actions'
 
-export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
+export default function LetterCypher ({ puzzleId, seed }) {
 
     const [state, dispatch] = useGameContext();
 
@@ -48,7 +48,7 @@ export default function LetterCypher ({ puzzleId, triageLevel, seed }) {
                     return;
                 }
             }
-            dispatch({type: REMOVE_PUZZLE, payload: {puzzleId, triageLevel}})
+            dispatch({type: REMOVE_PUZZLE, payload: {puzzleId}})
             
         } catch {
             console.log('TODO: Add player feedback for incorrect guess format')

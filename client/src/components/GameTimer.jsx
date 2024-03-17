@@ -9,8 +9,6 @@ export default function GameTimer ({timeRemaining, points, increment}) {
             <h1>Time Remaining: <span className={timeRemaining < 30 ? 'warningTimer' : undefined}> 
                             {new Date(timeRemaining * 1000).toISOString().substring(14, 19)}</span>
             </h1>
-            <h2>Points: {points}</h2>   
-            <ProgressBar animated variant={(increment < 100) ? 'success' : (increment < 200) ? 'warning' : 'danger'} now={increment/3} style={{width: '50%', padding: '0px'}}/>
         </>
     )
 };
