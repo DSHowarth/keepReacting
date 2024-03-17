@@ -11,7 +11,7 @@ export const GameProvider = ({ children }) => {
     
     const puzzles = [];
     // TODO: Update timer to 5 min again after testing
-    const timeRemaining = 30;
+    const timeRemaining = 300;
     const gameState = useReducer(reducer,{ puzzles, timeRemaining })
 
     return (

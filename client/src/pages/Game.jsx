@@ -32,6 +32,8 @@ export default function Game() {
         // create seed for puzzle so it will be the same every time the page renders
         newPuzzle.seed = Math.floor(Math.random() * 1000);
 
+        newPuzzle.complete = false;
+
         dispatch({ type: ADD_PUZZLE, payload: newPuzzle });
     };
 

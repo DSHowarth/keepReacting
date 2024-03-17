@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useGameContext } from '../../utils/GameContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { REMOVE_PUZZLE } from '../../utils/actions'
+import { COMPLETE_PUZZLE } from '../../utils/actions'
 
 export default function LetterCypher ({ puzzleId, seed }) {
 
@@ -48,7 +48,7 @@ export default function LetterCypher ({ puzzleId, seed }) {
                     return;
                 }
             }
-            dispatch({type: REMOVE_PUZZLE, payload: {puzzleId}})
+            dispatch({ type: COMPLETE_PUZZLE, payload: { puzzleId} })
             
         } catch {
             console.log('TODO: Add player feedback for incorrect guess format')

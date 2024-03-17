@@ -2,7 +2,7 @@ import rng from 'random-seed'
 import { useState } from 'react';
 import { useGameContext } from '../../utils/GameContext';
 import Button from 'react-bootstrap/Button';
-import { REMOVE_PUZZLE } from '../../utils/actions'
+import { COMPLETE_PUZZLE } from '../../utils/actions'
 
 export default function ButtonOrder ({ puzzleId, seed }) {
 
@@ -48,7 +48,7 @@ export default function ButtonOrder ({ puzzleId, seed }) {
         // after each update, check whether they have the correct answer. Convert to string to allow
         // use of logical operator
         if (playerGuess.toString() === answer) {
-            dispatch({type: REMOVE_PUZZLE, payload: {puzzleId}})
+            dispatch({type: COMPLETE_PUZZLE, payload: {puzzleId}})
         }
         
     }

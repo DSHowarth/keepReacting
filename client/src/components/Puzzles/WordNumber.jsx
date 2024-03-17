@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useGameContext } from '../../utils/GameContext';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { REMOVE_PUZZLE } from '../../utils/actions'
+import { COMPLETE_PUZZLE } from '../../utils/actions'
 
 export default function WordNumber({ puzzleId, seed }) {
   const [state, dispatch] = useGameContext();
@@ -14,7 +14,7 @@ export default function WordNumber({ puzzleId, seed }) {
   const seededRng = rng.create(seed);
 
   const wordBank = ['APPLE', 'ORANGE', 'BANANA', 'GRAPE', 'KIWI', 'MANGO', 'ARRAY', 'FARLEY', 'UNFAIR', 'UIUX'];
-  //letters and there values
+  //letters and their values
   const letters = {
     A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9, J: 10, K: 11, L: 12, M: 13, N: 14, O: 15, P: 16, Q: 17, R: 18, S: 19, T: 20, U: 21, V: 22, W: 23, X: 24, Y: 25, Z: 26
   };
@@ -41,10 +41,11 @@ export default function WordNumber({ puzzleId, seed }) {
     try {
       //if value does not match answer, does not remove puzzle
       if (!playerGuess === answer) {
+        console.log('guess wrong')
         return;
       }
-
-      dispatch({ type: REMOVE_PUZZLE, payload: { puzzleId} })
+      console.log(playerGuess + ' ' + answer)
+      dispatch({ type: COMPLETE_PUZZLE, payload: { puzzleId} })
 
     } catch {
       console.log('TODO: Add player feedback for incorrect guess format')

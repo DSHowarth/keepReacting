@@ -1,7 +1,7 @@
 import {
     ADD_PUZZLE,
-    REMOVE_PUZZLE,
-    REDUCE_TIMER
+    REDUCE_TIMER,
+    COMPLETE_PUZZLE
   } from './actions';
 
   export default function reducer(state, action) {
@@ -15,19 +15,25 @@ import {
             }
         }
 
-        case REMOVE_PUZZLE: {
-            return {
-                ...state,
-                puzzles: [...state.puzzles].filter(
-                (puzzle) => puzzle.id !== action.payload.puzzleId
-                )
-            };
-        }
-
         case REDUCE_TIMER: {
             return {
                 ...state,
                 timeRemaining: state.timeRemaining -= 1
+            }
+        }
+
+        case COMPLETE_PUZZLE: {
+            console.log(state)
+            return {
+                ...state,
+                puzzles: [...state.puzzles].map(
+                    (puzzle) =>  {
+                        if(puzzle.id == action.payload.puzzleId) {
+                            puzzle.complete = true
+                        }
+                        return puzzle
+                    }
+                )
             }
         }
     }

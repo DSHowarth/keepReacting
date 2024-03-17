@@ -16,7 +16,7 @@ export default function PuzzleCard({ id, puzzleType, seed, timeRemaining, timerC
         // placeholder classnames
         <Card className={'col-4 '}>
             <Card.Body>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill={complete ? "green" : "red"} className="bi bi-circle-fill" viewBox="0 0 16 16" id={id}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill={complete ? "green" : "red"} className="bi bi-circle-fill" viewBox="0 0 16 16">
                 <circle cx="8" cy="8" r="8"/>
             </svg>
                 {timerCard ? <GameTimer timeRemaining={timeRemaining}/> :
