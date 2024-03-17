@@ -25,15 +25,12 @@ export default function Home() {
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.8 }}
               type="submit"
-              disabled={!Auth.loggedIn()}
               className={'playButton'}
             >
               Play
             </motion.button>
           </LinkContainer>
         </Row>
-        {!Auth.loggedIn() && 
-          <p>Please log in to play the game. Viewing the manual can be done by anyone, though!</p>}
         <LinkContainer to="/manual">
           <motion.button
             whileHover={{ scale: 1.2 }}
