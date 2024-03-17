@@ -54,7 +54,7 @@ export default function Game() {
 
     useEffect(() => {
 
-        // generate 5 puzzles on game start, 1 high priority, 2 medium priority, 2 low priority
+        // generate 5 puzzles on game start
 
         generatePuzzle(2)
         generatePuzzle(1)

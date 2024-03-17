@@ -6,7 +6,6 @@ import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import GameWrapper from "./components/GameWrapper.jsx";
 import Scores from "./pages/Scores.jsx";
-import Manual from "./pages/Manual.jsx";
 import Error from "./pages/Error.jsx";
 import AboutDev from "./pages/AboutDev.jsx"
 
@@ -23,10 +22,6 @@ const router = createBrowserRouter([
       {
         path: "/game",
         element: <GameWrapper />,
-      },
-      {
-        path: "/manual",
-        element: <Manual />,
       },
       {
         path: "/scores",
