@@ -3,7 +3,6 @@ import uniqid from 'uniqid';
 import { useEffect, useState, useRef } from 'react';
 import { ADD_PUZZLE, REDUCE_TIMER } from '../utils/actions';
 import PuzzleCard from '../components/PuzzleCard';
-import GameTimer from '../components/GameTimer';
 import SaveScore from '../components/SaveScore';
 import Row from 'react-bootstrap/Row';
 
