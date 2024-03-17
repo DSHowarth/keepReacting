@@ -73,6 +73,7 @@ export default function Game() {
                         seed={puzzle.seed}
                         timeRemaining={state.timeRemaining}
                         timerCard={puzzle.gameTimer}
+                        complete={puzzle.complete}
                     />
                 })}
             </Row>
