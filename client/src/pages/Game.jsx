@@ -38,25 +38,19 @@ export default function Game() {
 
     useEffect(() => {
 
-        // generate 5 puzzles on game start
+        // generate 11 puzzles, make second entry in state array the timer
 
-        generatePuzzle(2)
+        generatePuzzle()
         dispatch({ type: ADD_PUZZLE, payload: {gameTimer: true, id: uniqid()} });
-        generatePuzzle(1)
-        generatePuzzle(1)
-        generatePuzzle(0)
-        generatePuzzle(0)
+        for (let i = 0; i < 10; i++) {
+            generatePuzzle()
+        }
 
-        let counter = 0;
         // interval updates every second, checking to see if the player has run out of time 
         // while the game goes on, the points total increases every second 
         interval.current = setInterval(() => {
             if (gameActive) {
                 dispatch({ type: REDUCE_TIMER })
-                counter++
-                if (!(counter % 15)) {
-                    generatePuzzle();
-                }
             }
         }
             , 1000)
