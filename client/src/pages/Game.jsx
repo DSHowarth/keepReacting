@@ -20,22 +20,6 @@ export default function Game() {
     // string of puzzle names, elements to be passed along to child components for conversion into actual components
     const puzzleList = ['letterCypher', 'wordNumber', 'buttonOrder'];
 
-    // checking to see if a new puzzle should be added
-    // const puzzleGenBool = () => {
-    //     // setting max number of puzzles that can exist at once
-    //     if (state.puzzles.length < 6) {
-    //         const diceRoll = Math.floor(Math.random() * 100);
-
-    //         //TODO: add logic for adding to the dice roll as the timer ticks down
-
-    //         if (diceRoll > 95) {
-    //             return true;
-    //         }
-    //     }
-
-    //     return false;
-    // };
-
     // creates a new, randomly generated puzzle and adds it to the list of active puzzles for React to draw.
     const generatePuzzle = () => {
         const newPuzzle = {};
@@ -57,6 +41,7 @@ export default function Game() {
         // generate 5 puzzles on game start
 
         generatePuzzle(2)
+        dispatch({ type: ADD_PUZZLE, payload: {gameTimer: true, id: uniqid()} });
         generatePuzzle(1)
         generatePuzzle(1)
         generatePuzzle(0)
@@ -86,8 +71,6 @@ export default function Game() {
     if (gameActive) {
         return (
             <>
-            
-                <GameTimer timeRemaining={state.timeRemaining}/>
             <Row className={'justify-content-center'}>
                 {state.puzzles.map((puzzle) => {
                     return <PuzzleCard
@@ -95,6 +78,8 @@ export default function Game() {
                         id={puzzle.id}
                         puzzleType={puzzle.puzzleType}
                         seed={puzzle.seed}
+                        timeRemaining={state.timeRemaining}
+                        timerCard={puzzle.gameTimer}
                     />
                 })}
             </Row>

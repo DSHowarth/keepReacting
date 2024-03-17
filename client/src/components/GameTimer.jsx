@@ -1,5 +1,4 @@
-import ProgressBar from 'react-bootstrap/ProgressBar';
-export default function GameTimer ({timeRemaining, points, increment}) {
+export default function GameTimer ({timeRemaining}) {
 
     return (
         <>

@@ -2,8 +2,9 @@ import LetterCypher from './Puzzles/LetterCypher';
 import WordNumber from './Puzzles/WordNumber';
 import ButtonOrder from './Puzzles/ButtonOrder';
 import Card from 'react-bootstrap/Card';
+import GameTimer from './GameTimer';
 
-export default function PuzzleCard({ id, puzzleType, seed }) {
+export default function PuzzleCard({ id, puzzleType, seed, timeRemaining, timerCard }) {
 
     const puzzleObj = {
         'letterCypher': <LetterCypher seed={seed} puzzleId={id} />,
@@ -15,7 +16,7 @@ export default function PuzzleCard({ id, puzzleType, seed }) {
         // placeholder classnames
         <Card className={'col-4 '}>
             <Card.Body>
-                {puzzleObj[puzzleType]}
+                {timerCard ? <GameTimer timeRemaining={timeRemaining}/> : puzzleObj[puzzleType]}
             </Card.Body>
         </Card>
     )
